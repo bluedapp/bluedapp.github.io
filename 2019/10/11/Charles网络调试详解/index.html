@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            Charles网络调试详解 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Charles网络调试详解 | BluedWeb">
+    <meta property="og:description" content>
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Charles网络调试详解"><span class="post-toc-number">1.</span> <span class="post-toc-text">Charles网络调试详解</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#为什么要用它"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">为什么要用它</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#主要功能"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">主要功能</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#破解安装"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">破解安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常规使用"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">常规使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#抓包浏览器"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">抓包浏览器</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#抓https"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">抓https</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#电脑端"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">电脑端</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#移动端"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">移动端</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#网速模拟"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">网速模拟</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#断点设置"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">断点设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#tools"><span class="post-toc-number">1.7.1.</span> <span class="post-toc-text">tools</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常见问题"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">常见问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#代理冲突"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">代理冲突</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#代理不到项目怎么办？"><span class="post-toc-number">1.8.2.</span> <span class="post-toc-text">代理不到项目怎么办？</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#开启charles后上不去网"><span class="post-toc-number">1.8.3.</span> <span class="post-toc-text">开启charles后上不去网</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#更多高级用法"><span class="post-toc-number">2.</span> <span class="post-toc-text">更多高级用法</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          Charles网络调试详解
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars3.githubusercontent.com/u/19648678?v=4" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/menglingyu">menglingyu</a>
+    </strong>
+    <span>10月 11, 2019</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACyUlEQVR42u3aS3IbMQwFQN3/0skBbI/fA5lIRfasXK6RiObCMD6vP1c+L2xsbGxsbGxsbOyPZL/i56f3vzng8f2vn0rOXYkZGxsb+wb2L3/6A0bOe76+/LN5zNjY2Nj3sJ9DScJKAkrefz6xjRkbGxsbez0VraRAbGxsbOx/kcDyzyaFxHoM2NjY2Nh1gyYoRVZaRXmh8p96adjY2Ngfz14pA9718xvm29jY2Ngfyd684BgMCdr1nTxpFcuX2NjY2Aex21XIvGBoi418kNA2pLCxsbHPZs8aSflKTX4dOaCNHBsbG/ts9iyBJelk/Sp3DR6wsbGx72HPSot24bJOPKMFIGxsbOzb2PmKzK6ktbd0ic7FxsbGPpTdNtlXBrrJt+VlTx4JNjY29g3s2aggX6+ZjW/zb44uCBsbG/tQ9mxkm7Tsk+S0UvbUV4+NjY19Mbtt97cpKk9aswEDNjY29j3sWVO+TTn5SKC9emxsbOw72QkpObgNKClR2t8UpQg2Njb2Qez8Y3m6ytco88TZvomNjY19J3uWutoiJL+OvPiJVoiwsbGxL2BHK4zxQLdNeCtDiMSCjY2NfSp7+G/9plCicOMh8S+xYWNjYx/KztcZ2xKiPWVW3myYb2NjY2Mfyk6KgTydzNZ91q8YGxsb+072SlGRhzUbLc/GxtjY2Ng3sGfBtT/nTf88OeXfj42NjX02e2/C2NWQml1QXYpgY2NjH8fOS5TZUmbeQlp/sLGxsW9gt08+oM1XcPLSaCmtYmNjYx/KbpNBvnyTFCEr59YpExsbG/todj6szZNWS2pLi7opho2NjX0BeyV5rLT188Fwe4nY2NjY2G0Z0K7gtCPe5MQfrw8bGxsbe+sYOB8q5OkNGxsbG7tIBnE5sTkJLSQ5bGxs7LPZs4Fr3gZqec8XmseAjY2NfQP7ngcbGxsbGxsbGxv7Y56/sE65zGR4BxwAAAAASUVORK5CYII=">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h3 id="Charles网络调试详解"><a href="#Charles网络调试详解" class="headerlink" title="Charles网络调试详解"></a>Charles网络调试详解</h3><p>Charles是一个HTTP代理/ HTTP监视器/反向代理，使开发人员能够查看其机器和Internet之间的所有HTTP和SSL / HTTPS流量。这包括请求，响应和HTTP标头（包含cookie和缓存信息）。</p>
+<h4 id="为什么要用它"><a href="#为什么要用它" class="headerlink" title="为什么要用它"></a>为什么要用它</h4><p>chrome network 已经足够好用了，为什么要用它，简单一句话，chrome 只是让你看到请求的过程，而不能调试这个过程。而charles是可以对网络这一层进行比如断点、限速、修改等调试功能，并且charles不局限于浏览器，可以代理任何平台的请求、比如后端、postman等。</p>
+<h4 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h4><ol>
+<li>带宽限制</li>
+<li>请求、响应断点，请求、响应重写</li>
+<li>自动配置浏览器和系统代理设置</li>
+<li><strong>无缓存工具:</strong> 它可以防止客户端应用程序（如Web浏览器）缓存任何资源</li>
+<li><strong>映射、本地远程工具:</strong> 比如你可以把线上资源映射到本地某个文件夹下，这样可以方便的处理一些特殊情况下的bug和线上调试</li>
+<li>阻止Cookies</li>
+<li>DNS欺骗工具</li>
+<li>支持手机等其他终端也网络调试</li>
+<li>支持SOCKS</li>
+</ol>
+<p>下载地址：<a href="https://www.charlesproxy.com/download/" target="_blank" rel="noopener">https://www.charlesproxy.com/download/</a></p>
+<h4 id="破解安装"><a href="#破解安装" class="headerlink" title="破解安装"></a>破解安装</h4><ol>
+<li><a href="https://www.zzzmode.com/mytools/charles/" target="_blank" rel="noopener">点我下载破解文件</a></li>
+<li>替换charles.jar文件<br>macOS: /Applications/Charles.app/Contents/Java/charles.jar<br>Windows: C:\Program Files\Charles\lib\charles.jar</li>
+</ol>
+<h4 id="常规使用"><a href="#常规使用" class="headerlink" title="常规使用"></a>常规使用</h4><h5 id="抓包浏览器"><a href="#抓包浏览器" class="headerlink" title="抓包浏览器"></a>抓包浏览器</h5><p>浏览器如 chrome 的http请求默认走的是系统代理，打开 Proxy -&gt; 勾选 macOS proxy 即可抓包</p>
+<h4 id="抓https"><a href="#抓https" class="headerlink" title="抓https"></a>抓https</h4><p>默认不支持抓https，看到的会是unkonw,需要提供证书，步骤如下。</p>
+<ol>
+<li>Proxy-&gt;SSL Proxy Settings，弹出一个ssl代理设置界面</li>
+<li>勾选 Enable SSL Proxying</li>
+<li>添加你想要的设置代理的域名,端口默认443,设置为 *,抓所有域名的包</li>
+<li>Help-&gt;SSL Proxying -&gt;Install Charles Root Certificate … ，根据要调试的平台选择对应的安装方式<h5 id="电脑端"><a href="#电脑端" class="headerlink" title="电脑端"></a>电脑端</h5>选择 Install Charles Root Certificate，然后会弹出”添加证书提示”，选择系统，自动安装后，打开”钥匙串访问”，找到对应的证书选择始终信任，重启Charles即可<br><img src="/img/mly/2bd94eb935bbef95214c1c71a19598f2.png" alt="appID" width="50%"></li>
+</ol>
+<h5 id="移动端"><a href="#移动端" class="headerlink" title="移动端"></a>移动端</h5><p>首先确保连接同一个wifi，在同一个网段。选择 Install Charles Root Certificate on a Mobile Device or Remote Browser…，然后设置设备代理，无限局域网 -&gt; 配置代理 -&gt; 手动 -&gt; 配置上提示的ip地址和端口，如果成功了，电脑会提示是否允许访问，同意后，用手机打开提示的 chls.pro/ssl会自动下载证书，然后：设置-&gt;通用-&gt;描述文件。启用描述文件，然后关于本机-&gt;证书信任设置、打开根据根证书启用完全信任，之后即可抓到包。<br><img src="/img/mly/db0d1c7ad3f295252028c4e16da3f1dc.png" alt="appID" width="50%"></p>
+<h4 id="网速模拟"><a href="#网速模拟" class="headerlink" title="网速模拟"></a>网速模拟</h4><p>用于模拟不同情况下的网速</p>
+<p>打开Proxy -&gt; Start/Stop Throttling，然后选择Throttle Settings对模拟网速进行配置</p>
+<p><img src="/img/mly/0c5dd7f5773ece6a1a75dd0c6f9138d7.png" alt="appID" width="50%"></p>
+<h4 id="断点设置"><a href="#断点设置" class="headerlink" title="断点设置"></a>断点设置</h4><p>抓包届的debugger，常用两种方式</p>
+<ol>
+<li>打开Proxy -&gt; Enable/Disable Breakpoints，开启断点调试，然后通过 Breakpoint Settings 配置哪些请求需要断点</li>
+<li>直接在请求记录上右键 勾选 Breakpoints, 之后请求就在请求的响应的过程停住，并且通过 edit request/responent，进行编辑</li>
+</ol>
+<p><img src="/img/mly/c6541008778ff9cc0012ead04e770a21.png" alt="appID" width="50%"></p>
+<h5 id="tools"><a href="#tools" class="headerlink" title="tools"></a>tools</h5><p>tools也是常用的一系列功能<br>Tools 菜单包含以下功能：</p>
+<ol>
+<li>No Caching Settings：禁用缓存设置。</li>
+<li>Block Cookies Settings：禁用 Cookie设置。</li>
+<li>Map Remote Settings：远程映射设置。</li>
+<li>Map Local Settings：本地映射设置。</li>
+<li>Rewrite Settings：重写设置。</li>
+<li>Black List Settings：黑名单设置。</li>
+<li>White List Settings：白名单设置。</li>
+<li>DNS Spoofing Settings：DNS 欺骗设置。</li>
+<li>Mirror Settings：镜像设置。</li>
+<li>Auto Save Settings：自动保存设置。</li>
+<li>Client Process Settings：客户端进程设置。</li>
+<li>Compose：编辑修改。</li>
+<li>Repeat：重复发包。</li>
+<li>Repeat Advanced：高级重复发包。</li>
+<li>Validate：验证。</li>
+<li>Publish Gist：发布要点。</li>
+<li>Import/Export Settings：导入/导出设置。</li>
+<li>Profiles：配置文件。</li>
+<li>Publish Gist Settings：发布要点设置。</li>
+</ol>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><h5 id="代理冲突"><a href="#代理冲突" class="headerlink" title="代理冲突"></a>代理冲突</h5><p>当想抓电脑包时需要勾选 Proxy -&gt; MacOs Proxy，此时会设置系统代理，而其他代理冲突比如科学上网软件shadowsocks，也是直接修改系统代理，相当于，</p>
+<pre><code>export http_proxy=http://127.0.0.1:****;export https_proxy=http://127.0.0.1:****;
+</code></pre><p><img src="/img/mly/54e7c04b908c80bd666bca3bae4e140e.png" alt="appID" width="50%"></p>
+<p>解决办法：配置外部代理，Proxy -&gt; External Proxy Settings -&gt; Use external proxy servers</p>
+<p><img src="/img/mly/243a9a207476f410ab83b33290cd1924.png" alt="appID" width="50%"></p>
+<h5 id="代理不到项目怎么办？"><a href="#代理不到项目怎么办？" class="headerlink" title="代理不到项目怎么办？"></a>代理不到项目怎么办？</h5><p>解决问题的通用逻辑是，在想要抓包的平台上配置代理到charles的代理服务器上(默认为:127.0.0.1:8888)<br>比如node中 通常请求库都会有一个proxy的api配置项、chrome默认不走代理，需要设置成charles代理，或者勾选macOS proxy 的情况下设置为系统代理。<br>以及 postman都可以设置代理。</p>
+<h5 id="开启charles后上不去网"><a href="#开启charles后上不去网" class="headerlink" title="开启charles后上不去网"></a>开启charles后上不去网</h5><ol>
+<li>是不是是开启了白名单，但网站没有添加到白名单里，解决方式：关闭White List；Tools–&gt;White List</li>
+<li>是不是开启了外部代理，但此时外部代理没有启动，解决方式：Proxy -&gt; External Proxy Settings -&gt; Use external proxy servers，关掉选项</li>
+</ol>
+<h3 id="更多高级用法"><a href="#更多高级用法" class="headerlink" title="更多高级用法"></a>更多高级用法</h3><p>官方文档：<a href="https://charlesproxy.com/documentation/configuration/browser-and-system-configuration/" target="_blank" rel="noopener">https://charlesproxy.com/documentation/configuration/browser-and-system-configuration/</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2019/10/11/Charles网络调试详解/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2019/10/11/Charles网络调试详解/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/08/24/grpc的Any类型在node中应用/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

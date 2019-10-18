@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            CSS--项目中那些居中问题 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",css">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="CSS--项目中那些居中问题 | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="css"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#垂直居中"><span class="post-toc-number">1.</span> <span class="post-toc-text">垂直居中</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-自身属性设置"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1 自身属性设置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-flex-align-item属性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2 flex  align-item属性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-借助-position"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3 借助 position</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#水平居中"><span class="post-toc-number">2.</span> <span class="post-toc-text">水平居中</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-自身属性设置-1"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1 自身属性设置</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-flex"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2 flex</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-对于需要定位的-未知宽度的元素-如何实现水平居中"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3 对于需要定位的 未知宽度的元素 如何实现水平居中</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Tips"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">Tips</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="/img/mxx/20170526_Gleaning_css/banner_css.png">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          CSS--项目中那些居中问题
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars0.githubusercontent.com/u/20737114?v=3" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/mengxxSELF">mxx</a>
+    </strong>
+    <span>6月 10, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACcklEQVR42u3aQXLCMBAEQP7/6eQBFDCzsoSTap8osGW1D5aY3cfPvz4eeHh4eHh4eHh4N+M94uP5qlef8/OTq+q54eHh4R3hfXjVvjjn+QbJ7d+P/P5BRCPg4eHhHeS9mlYCeH9Vcsf8zA/LDB4eHt4tecn57fLQPlY8PDy8v8VrA4iEnWyv8fDw8O7GS/7wt1vnWYD7tawFDw8PL+bNIoYzn4/W9/Dw8PACXt3SFIQLsy1yMmbddIWHh4e3gZe/iPPlpI0e2hE+hMJ4eHh4m3n53/42xm1bqfJouIhx8fDw8LbxZi/ifPHIwUk57cPIeHh4eJt5sxar9hWfb7LzX4t/DHh4eHjbeMnQSUSbLzzJhjufFR4eHt4Z3ixUXR9h5SHWrQN4eHh4G3htRNs2QiXTXS/L4eHh4Z3h5VNZWQxmwfFlYQQeHh7epbyV4KAtd82KW/Vig4eHh7eZNyv5X9V0lUcPw6YrPDw8vA28fHs92/62y0leJBtmLXh4eHjLvPVJ598k47elr6XOCDw8PLwF3uybdsFot87DWAQPDw/vIC8JWPPCf9sylTyIaFZ4eHh4X+LlTU5trNA2XeWFNDw8PLxv8WZNALPoNt86F8sJHh4e3kHeyvZ3ViprR4hmjoeHh7eZ1x4zdr5NnwUQeHh4eCd5VxWxkk153lKQByV4eHh43+Ili0FbEstf8flmPXqIeHh4eAd5+Qt6FuPOpp7fEQ8PD+/OvHwDPWPPHigeHh7enXltcSuJd9vQoYhx8fDw8LbxktvPCmYtrC2b4eHh4Z3nzSKAlSaqjUU4PDw8vM28/3fg4eHh4eHh4eHd4PgFpUYA/EH5cwMAAAAASUVORK5CYII=">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/css/">css</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>元素的居中问题可以从以下方面实现</p>
+<ul>
+<li>自身属性设置</li>
+<li>flex布局</li>
+<li>定位</li>
+</ul>
+<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h4 id="1-自身属性设置"><a href="#1-自身属性设置" class="headerlink" title="1 自身属性设置"></a>1 自身属性设置</h4><ul>
+<li>1.1 height &amp;&amp; line-height</li>
+</ul>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-dictionary" target="_blank" rel="noopener">基友词典</a>  选项设置</p>
+<ul>
+<li>1.2 padding || margin</li>
+</ul>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-Valentines" target="_blank" rel="noopener">白色情人节</a>  排行榜组件</p>
+<p>组件高度是因为padding或者margin而产生</p>
+<ul>
+<li>1.3 display &amp;&amp; vertical-align</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span>  <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{...}/</span><span class="token punctuation">></span></span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+div{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+</code></pre>
+<p>效果如下<br><img src="/img/mxx/20170526_Gleaning_css/css-table.png" alt="css"></p>
+<p>这种垂直居中方式利用了行内元素属性 vertical-align 所以如果子级是块元素 则不会有垂直居中效果</p>
+<ul>
+<li>1.4 position &amp;&amp; margin-top<br>将已知大小的元素定位在最高层级位置并实现垂直方向居中效果</li>
+</ul>
+<pre class=" language-css"><code class="language-css"><span class="token selector">div</span><span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span><span class="token number">50</span>px<span class="token punctuation">;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span>absolute<span class="token punctuation">;</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span><span class="token number">25</span>px<span class="token punctuation">;</span>
+  <span class="token number">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-songkran" target="_blank" rel="noopener">泼水节</a> 播放按钮</p>
+<h4 id="2-flex-align-item属性"><a href="#2-flex-align-item属性" class="headerlink" title="2 flex  align-item属性"></a>2 flex  align-item属性</h4><pre class=" language-css"><code class="language-css"><span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span>Center<span class="token punctuation">;</span>
+
+</code></pre>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-spring" target="_blank" rel="noopener">春光乍泄旅游季</a>  排行榜组件</p>
+<h4 id="3-借助-position"><a href="#3-借助-position" class="headerlink" title="3 借助 position"></a>3 借助 position</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>BLUED<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+
+p{
+  position: absolute;
+  left:0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  margin:auto;
+  width:100px;
+  height:100px;
+}
+</code></pre>
+<p>这种方式需要知道元素的具体大小</p>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-dictionary?id=75111#questions#questions" target="_blank" rel="noopener">基友词典</a>  模态框组件</p>
+<h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><h4 id="1-自身属性设置-1"><a href="#1-自身属性设置-1" class="headerlink" title="1 自身属性设置"></a>1 自身属性设置</h4><ul>
+<li>1.1 display &amp;&amp; text-align</li>
+</ul>
+<pre class=" language-scss"><code class="language-scss"><span class="token property">display</span><span class="token punctuation">:</span>inline-block<span class="token punctuation">;</span>
+<span class="token property">text-align</span><span class="token punctuation">:</span>center<span class="token punctuation">;</span>
+</code></pre>
+<p>将元素设置为inline-block 然后使用text-align:center 可实现元素水平居中</p>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-dictionary" target="_blank" rel="noopener">基友词典</a>  上一题按钮处理</p>
+<p>适用于 元素宽度未知</p>
+<ul>
+<li>1.2 width &amp;&amp; margin</li>
+</ul>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-photolab" target="_blank" rel="noopener">Photo Lab</a>  Header部分头像处理</p>
+<p>适用于 元素的宽度大小已知</p>
+<ul>
+<li>定位 left &amp;&amp; margin-left</li>
+</ul>
+<p>使用案例 <a href="http://app.blued.cn/hd/2017-lovers" target="_blank" rel="noopener">缘定三生</a> 用户排名</p>
+<p>适用于 需要使用定位的固定宽度大小元素</p>
+<h4 id="2-flex"><a href="#2-flex" class="headerlink" title="2 flex"></a>2 flex</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>spot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+
+div{
+  display:flex;
+  justify-content:center;
+}
+
+</code></pre>
+<h4 id="3-对于需要定位的-未知宽度的元素-如何实现水平居中"><a href="#3-对于需要定位的-未知宽度的元素-如何实现水平居中" class="headerlink" title="3 对于需要定位的 未知宽度的元素 如何实现水平居中"></a>3 对于需要定位的 未知宽度的元素 如何实现水平居中</h4><ul>
+<li>3.1 行内元素</li>
+</ul>
+<p>考虑使用text-align属性</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>BLUED<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+div{
+  ...
+  position:relative;
+  text-align:center;
+}
+span{
+  position:absolute;
+  width:100px;
+}
+
+</code></pre>
+<p>效果如下<br><img src="/img/mxx/20170526_Gleaning_css/position-inline.png" alt="css"></p>
+<p>图中白色竖线是处于水平居中位置</p>
+<p>当元素使用定位之后，就具有了display的属性 所以可以给span元素添加width属性</p>
+<p>然而span元素并未像我们预期中处于居中分布的状态 而是与父级容器的中垂线左侧对齐显示</p>
+<p>如果我们在前面添加一行文字</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  CENTER <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>BLUED<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>效果如下<br><img src="/img/mxx/20170526_Gleaning_css/position-inline2.png" alt="css"></p>
+<p>可以看到 文字实现了居中效果</p>
+<p>这是因为：text-align属性作用的不是absolute元素， 而是absolute元素前面的文字 [或者可以说是具有inline或者inline-block属性的元素]</p>
+<p>所以span元素位于中垂线左侧对齐的原因是：标签内有不占据任何空间的匿名文字节点元素 ，导致span元素就紧挨着此匿名文字节点元素显示</p>
+<p>处理方案</p>
+<ul>
+<li>方案1 属性设置</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{...}/</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+
+img{
+  position: absolute;
+  left:0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  margin:0 auto;
+}
+
+</code></pre>
+<p>效果如下<br><img src="/img/mxx/20170526_Gleaning_css/Can.png" alt="css"></p>
+<ul>
+<li>方案2 外面再包装一层盒子</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{...}</span> <span class="token punctuation">/></span></span>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+div{
+  position:relative;
+  ...
+}
+p{
+  position:absolute;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+}
+
+</code></pre>
+<p>将定位属性放在盒子元素上  居中目标元素受到text-align影响 水平方向为居中位置</p>
+<ul>
+<li>3.2 块级元素</li>
+</ul>
+<p>虽然inline元素设置position为absolute可以使其具有块级元素的特性  但是如果是块级元素直接absolute 却无法利用text-align进行水平方向的处理</p>
+<p>未知高度的块级元素实现层级定位并且水平方向保持居中处理方案同行内元素相同<br>不过需要注意的是如果使用的是第一种处理方式 当此元素未设置高度 其高度会被撑到父级高度大小</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>BLUED<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+--style--
+
+p{
+  position: absolute;
+  left:0;
+  right: 0;
+  top:0;
+  bottom: 0;
+  margin:0 auto;
+}
+</code></pre>
+<p>不设置元素具体高度大小 显示如下</p>
+<p>效果如下<br><img src="/img/mxx/20170526_Gleaning_css/position-display.png" alt="css"></p>
+<p>可以看到 块级元素p的高度 被撑开了<br>所以这种方式需要处理高度</p>
+<h4 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h4><ul>
+<li>flex 各浏览器使用情况</li>
+</ul>
+<p><img src="/img/mxx/20170526_Gleaning_css/support_flex.png" alt="flex"></p>
+<ul>
+<li>当元素具有absolute 属性的时候 此元素会具有块级元素的特性</li>
+</ul>
+<pre class=" language-css"><code class="language-css"><span class="token property">display</span><span class="token punctuation">:</span>inline-block<span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li>bourbon 中提供的 ellipsis 方法<pre class=" language-scss"><code class="language-scss"><span class="token keyword">@include</span> <span class="token function">ellipsis</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+在Android和iOS中表现不同</li>
+</ul>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>所爱隔山海 山海皆可平<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+
+-- style --
+a{
+  background: #fff;
+  ...
+  span{
+    @include ellipsis(3rem)
+  }
+}
+
+</code></pre>
+<p>Android中 效果如下<br><img src="/img/mxx/20170526_Gleaning_css/Android.png" alt="Android"><br>iOS 效果如下<br><img src="/img/mxx/20170526_Gleaning_css/ios.png" alt="iOS"><br>可以看到文字位置有偏差</p>
+<p>其源码为</p>
+<pre class=" language-scss"><code class="language-scss"><span class="token keyword">@mixin</span> <span class="token function">ellipsis</span><span class="token punctuation">(</span>
+  <span class="token property"><span class="token variable">$width</span></span><span class="token punctuation">:</span> <span class="token number">100%</span>,
+  <span class="token property"><span class="token variable">$display</span></span><span class="token punctuation">:</span> inline-block
+<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> <span class="token variable">$display</span><span class="token punctuation">;</span>
+  <span class="token property">max-width</span><span class="token punctuation">:</span> <span class="token variable">$width</span><span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+  <span class="token property">text-overflow</span><span class="token punctuation">:</span> ellipsis<span class="token punctuation">;</span>
+  <span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+  <span class="token property">word-wrap</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可以看到元素默认display属性是inline-block  对于具有此属性的元素 其默认的对齐方式为基线对齐</p>
+<pre class=" language-css"><code class="language-css"><span class="token property">vertical-align</span><span class="token punctuation">:</span>baseline    
+</code></pre>
+<p>这个属性导致Android和iOS中表现不同</p>
+<p>解决方案:<br>为元素添加属性</p>
+<pre class=" language-css"><code class="language-css"><span class="token property">display</span><span class="token punctuation">:</span>block
+</code></pre>
+<p>或者</p>
+<pre class=" language-css"><code class="language-css"><span class="token property">vertical-align</span><span class="token punctuation">:</span>middle  
+</code></pre>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/06/10/Gleaning-css/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/06/10/Gleaning-css/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/06/14/framework-qa/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/06/07/写‘后端’的工作感触/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

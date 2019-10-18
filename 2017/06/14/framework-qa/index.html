@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            前端项目架构时遇到的问题 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",JavaScript,Framework,Webpack,React,Antd,Test">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="前端项目架构时遇到的问题 | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="JavaScript"> <meta property="og:article:tag" content="Framework"> <meta property="og:article:tag" content="Webpack"> <meta property="og:article:tag" content="React"> <meta property="og:article:tag" content="Antd"> <meta property="og:article:tag" content="Test"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技术概览"><span class="post-toc-number">1.</span> <span class="post-toc-text">技术概览</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一次配置，多处使用"><span class="post-toc-number">2.</span> <span class="post-toc-text">一次配置，多处使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Babel-6-x"><span class="post-toc-number">3.</span> <span class="post-toc-text">Babel (6.x)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#null"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">babel-polyfill</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Babel-配置-Presets（转码规则）"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Babel 配置 - Presets（转码规则）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#-1"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">babel-preset-env</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#-2"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">babel-preset-react</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#-3"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">babel-preset-stage-0</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Babel-配置-Plugins（插件）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Babel 配置 - Plugins（插件）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#-4"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">babel-plugin-transform-react-remove-prop-types</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#-5"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">babel-plugin-import</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Babel-配置文件"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">Babel 配置文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Babel-ESLint"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">Babel ESLint</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Webpack-2-x"><span class="post-toc-number">4.</span> <span class="post-toc-text">Webpack (2.x)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置-amp-ES6"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">配置 &amp; ES6</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#按需配置"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">按需配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#忽略解析"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">忽略解析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#babel-loader-之-cacheDirectory"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">babel-loader 之 cacheDirectory</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#动态匹配路径"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">动态匹配路径</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Webpack-Hash-的困扰"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">Webpack Hash 的困扰</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Webpack-Clean-父级目录的权限问题"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">Webpack Clean 父级目录的权限问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提升-Webpack-压缩-JS-文件的速度"><span class="post-toc-number">4.8.</span> <span class="post-toc-text">提升 Webpack 压缩 JS 文件的速度</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端测试"><span class="post-toc-number">5.</span> <span class="post-toc-text">前端测试</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="/img/liuqian/framework-qa/banner.jpg">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          前端项目架构时遇到的问题
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars0.githubusercontent.com/u/4251365?v=3" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/l19861225q">l19861225q</a>
+    </strong>
+    <span>6月 14, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACaklEQVR42u3aQXLDMAgF0Nz/0u22M22cD0iK03leZVLH1tNCUODx9a+vBx4eHh4eHh4e3s14j/j640E/vr++//edz9YwXxseHh7eGd6Lo/aS19uaa+pkbXh4eHgnec+WlR/ryeKevbEXePDw8PA+hZcc6NXwkL8XDw8P7xN51WM9YVe3DA8PD+8OvOQf/iq7V8B9W60FDw8PL+blpdjzn4/29/Dw8PACXnmkKShG9FLkJAyUh67w8PDwNvDyg7jayqoGmPwJL4rCeHh4eEd4+ajTfLhqMlLQLOPi4eHhbeP1ShLzEu3iUS08PDy8zbxqq6m3lDzJXjx0hYeHh7eZd73cSYM/X2KeTBeq1Hh4eHhHeBNStSzbCzyF0QE8PDy8pbzkIM6LEXkxtzeIELXl8PDw8G7AW5UuVwNS8j0eHh7eu3i9hn0+RpD8dVVyj4eHh3eGV/hx3CqrDgpMthUPDw/vPrxVL85ba/nnUTECDw8Pb8zLW1CrjvLqAEFz6AoPDw9vM6+K7BUReqWKQrDBw8PDuwEvb19N2v/5RjSr1Hh4eHgbeMlCq4NTyRZsH7rCw8PD28brhYE8MFQT6GrZFw8PD++9vGRsNL+zMGxaHORqBgY8PDy8Aa96VVti1bS4mta/CAx4eHh4G3iP+OqNCCRjCvkwQZR24+Hh4R3h5cGgCsif1vvVgloLHh4e3oDXGySdtPmrASNaCR4eHt6NeZNlVQschXQfDw8P75a8pCSRJ+7z5+Ph4eG9i5c3vea/zWHl4QM8PDy8I7xVCfGkMZYn6y82HQ8PD28z7/9deHh4eHh4eHh4N7i+Ae16zkqV6pnoAAAAAElFTkSuQmCC">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Antd/">Antd</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Framework/">Framework</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/React/">React</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Test/">Test</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Webpack/">Webpack</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p><strong>本文涉及到的相关技术点不会讲解基础用法（请参考官方文档），只会针对开发中遇到的痛点展开讨论。</strong></p>
+<h2 id="技术概览"><a href="#技术概览" class="headerlink" title="技术概览"></a>技术概览</h2><p>主要使用了以下技术栈，从环境、编译、开发，再到测试，较为全面的涵盖了目前前端开发中常用的一套流程，可作为脚手架使用。</p>
+<ul>
+<li><a href="https://yarnpkg.com" target="_blank" rel="noopener">Yarn</a> - <small>Node 包管理器</small></li>
+<li><a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">ES6</a> - <small>ECMAScript6，下一代 JS 语法</small></li>
+<li><a href="https://babeljs.io" target="_blank" rel="noopener">Babel</a> - <small>ES6 编译器</small></li>
+<li><a href="https://webpack.js.org" target="_blank" rel="noopener">Webpack</a> - <small>前端开发构建工具</small></li>
+<li>Lint 代码检查<ul>
+<li><a href="http://eslint.org" target="_blank" rel="noopener">ESLint</a> - <small>JavaScript 代码检查</small></li>
+<li><a href="https://github.com/sasstools/sass-lint" target="_blank" rel="noopener">SASS Lint</a> - <small>SASS 代码检查</small></li>
+<li><a href="http://htmlhint.com" target="_blank" rel="noopener">HTML Lint</a> - <small>HTML 代码检查</small></li>
+</ul>
+</li>
+<li>React 相关<ul>
+<li><a href="https://facebook.github.io/react" target="_blank" rel="noopener">React</a> - <small>React 库</small></li>
+<li><a href="https://github.com/facebook/react/tree/master/packages/react-dom" target="_blank" rel="noopener">React DOM</a> - <small>React 插件，封装了和 DOM 相关的操作</small></li>
+<li><a href="https://reacttraining.com/react-router" target="_blank" rel="noopener">React Router DOM</a> - <small>前端路由</small></li>
+</ul>
+</li>
+<li>Style 相关<ul>
+<li><a href="http://sass-lang.com" target="_blank" rel="noopener">SASS</a> - <small>强大的 CSS 预处理器</small><ul>
+<li><a href="https://github.com/franzheidl/bemify" target="_blank" rel="noopener">Bemify</a> - <small>帮助写出 <a href="http://getbem.com" target="_blank" rel="noopener">BEM</a> 风格的 SASS 混入</small></li>
+<li><a href="http://bourbon.io" target="_blank" rel="noopener">Bourbon</a> - <small>轻量的 SASS 工具集</small></li>
+<li><a href="http://postcss.org" target="_blank" rel="noopener">Post CSS</a> - <small>强大的 CSS 后处理器</small></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Unit Testing <a href="http://baike.baidu.com/item/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95" target="_blank" rel="noopener">单元测试</a><ul>
+<li><a href="https://karma-runner.github.io/1.0/index.html" target="_blank" rel="noopener">Karma</a> - <small>单元测试执行器</small></li>
+<li><a href="https://jasmine.github.io" target="_blank" rel="noopener">Jasmine</a> - <small>行为驱动测试框架</small></li>
+<li><a href="http://airbnb.io/enzyme" target="_blank" rel="noopener">Enzyme</a> - <small>React 单元测试套件</small></li>
+<li><a href="http://phantomjs.org" target="_blank" rel="noopener">PhantomJS</a> - <small>基于 WebKit 的服务器端 JavaScript API，无需浏览器的 Web 测试</small></li>
+</ul>
+</li>
+<li>E2E Testing <a href="https://zhidao.baidu.com/question/29346350.html" target="_blank" rel="noopener">端到端测试</a><ul>
+<li><a href="http://nightwatchjs.org/" target="_blank">Nightwatch</a> - <small>基于 Node 的验收测试框架，使用 <a href="http://www.seleniumhq.org/" target="_blank">Selenium WebDriver API</a> 以将 Web 应用测试自动化</small></li>
+</ul>
+</li>
+</ul>
+<h2 id="一次配置，多处使用"><a href="#一次配置，多处使用" class="headerlink" title="一次配置，多处使用"></a>一次配置，多处使用</h2><p>项目结构如下：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">/</span>hd
+ <span class="token operator">-</span> <span class="token operator">/</span>components <span class="token comment" spellcheck="true">// 基于组件化思想，把活动页面通用的部分提出来作为公共组件，开发时可按需引入</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>constants <span class="token comment" spellcheck="true">// 定义全局使用的常量</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>coverage <span class="token comment" spellcheck="true">// 单元测试覆盖率报告</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>libs <span class="token comment" spellcheck="true">// 常用库函数（获取用户详情、handlebars helper 等）</span>
+ <span class="token operator">-</span> <span class="token operator">/</span><span class="token keyword">public</span> <span class="token comment" spellcheck="true">// Webpack 打包编译后文件存放目录</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>routes <span class="token comment" spellcheck="true">// Koa 路由</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>SCSS <span class="token comment" spellcheck="true">// 通用 SCSS 样式</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>src <span class="token comment" spellcheck="true">// 开发目录</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>test <span class="token comment" spellcheck="true">// 测试（unit、e2e）</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>utils <span class="token comment" spellcheck="true">// 工具函数</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>views <span class="token comment" spellcheck="true">// Koa 模板</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>webpack <span class="token comment" spellcheck="true">// 拆分的 Webpack 任务（若全部写在 webpack.config.js 中，会导致文件臃肿、不便阅读）</span>
+ <span class="token operator">-</span> <span class="token punctuation">.</span>babelrc <span class="token comment" spellcheck="true">// Babel 配置</span>
+ <span class="token operator">-</span> <span class="token punctuation">.</span>eslintrc <span class="token comment" spellcheck="true">// ESLint 配置</span>
+ <span class="token operator">-</span> <span class="token punctuation">.</span>gitignore <span class="token comment" spellcheck="true">// Git 忽略定义</span>
+ <span class="token operator">-</span> CHANGELOG<span class="token punctuation">.</span>md <span class="token comment" spellcheck="true">// 更新日志</span>
+ <span class="token operator">-</span> karma<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>js <span class="token comment" spellcheck="true">// Karma 配置</span>
+ <span class="token operator">-</span> nightwatch<span class="token punctuation">.</span>conf<span class="token punctuation">.</span>js <span class="token comment" spellcheck="true">// Nightwatch 配置</span>
+ <span class="token operator">-</span> <span class="token keyword">package</span><span class="token punctuation">.</span>json <span class="token comment" spellcheck="true">// NPM Package JSON</span>
+ <span class="token operator">-</span> postcss<span class="token punctuation">.</span>config<span class="token punctuation">.</span>js <span class="token comment" spellcheck="true">// Post CSS 配置</span>
+ <span class="token operator">-</span> README<span class="token punctuation">.</span>md <span class="token comment" spellcheck="true">// 说明文档</span>
+ <span class="token operator">-</span> webpack<span class="token punctuation">.</span>config<span class="token punctuation">.</span>babel<span class="token punctuation">.</span>js <span class="token comment" spellcheck="true">// Webpack 配置</span>
+ <span class="token operator">-</span> yarn<span class="token punctuation">.</span>lock <span class="token comment" spellcheck="true">// Yarn 锁（锁定 NPM 依赖包的版本）</span>
+</code></pre>
+<p>为了设计出一个通用的开发环境，满足不同的活动业务需求（可能来自运营、市场、公益等部门），需要做到彼此的项目隔离、互不影响。因此在 <code>/src</code> 目录下的第一子级是各个活动项目的源代码（命名采取：年份-{Project Name}，便于日后检索也可防止冲突）。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">/</span>src
+ <span class="token operator">-</span> <span class="token operator">/</span><span class="token number">2017</span><span class="token operator">-</span>lovers <span class="token comment" spellcheck="true">// 2017 情人节活动</span>
+ <span class="token operator">-</span> <span class="token operator">/</span><span class="token number">2017</span><span class="token operator">-</span>trees <span class="token comment" spellcheck="true">// 2017 植树节活动</span>
+ <span class="token operator">...</span>
+</code></pre>
+<p>因为使用了 webpack，开发时在终端输入指定的参数，定位到具体的某个活动项目，webpack 会根据当前的项目目录执行编译任务。为了适配这种通用性，会要求目录结构、文件名等要满足特定的规则：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 举个栗子</span>
+<span class="token operator">/</span><span class="token number">2017</span><span class="token operator">-</span>nightlive
+ <span class="token operator">-</span> <span class="token operator">/</span>components <span class="token comment" spellcheck="true">// 该项目用到的 React 组件</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>img <span class="token comment" spellcheck="true">// 图片文件</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>SCSS <span class="token comment" spellcheck="true">// 样式文件</span>
+ <span class="token operator">-</span> <span class="token operator">/</span>sprite <span class="token comment" spellcheck="true">// 将要被生成雪碧图的图标文件</span>
+ <span class="token operator">-</span> index<span class="token punctuation">.</span>hbs <span class="token comment" spellcheck="true">// 项目模板</span>
+ <span class="token operator">-</span> index<span class="token punctuation">.</span>js <span class="token comment" spellcheck="true">// Webpack 编译时的 entry 文件</span>
+</code></pre>
+<h2 id="Babel-6-x"><a href="#Babel-6-x" class="headerlink" title="Babel (6.x)"></a>Babel (6.x)</h2><blockquote>
+<p>可以将 ES6 语法转换成 ES5 语法，让我们在使用 ES6 新特性编写代码的同时，不需要考虑各大浏览器具体的兼容性情况。</p>
+</blockquote>
+<p>这里选择了 Babel，主要有以下几个原因：</p>
+<ul>
+<li>Babel 对 ES6 的支持程度比其它同类更高或相当</li>
+<li>Babel 拥有完善的文档和较好体验的在线编译环境</li>
+<li>Babel 使用广泛，用户基础好</li>
+</ul>
+<p>关于第一点原因的主要数据支持可以在 <a href="https://babeljs.io" target="_blank" rel="noopener">Bebel 官网</a>，我们可以看到不同版本 Babel 对 ES6 跟进和支持的情况，另外，关于在线编译平台，可以访问官网进行体验，这对于研究 Babel 编译结果十分方便。</p>
+<p>关于 Babel 的接入和使用方法，社区上的资料很多，这里配合构建工具 webpack，只需要安装插件 <a href="https://github.com/babel/babel-loader" target="_blank">babel-loader</a> 并在 <a href="https://webpack.js.org/configuration/module" target="_blank">webpack.module.rules</a> 中进行相关配置即可使用。</p>
+<h3 id><a href="#" class="headerlink" title></a><a href="https://babeljs.io/docs/usage/polyfill" target="_blank" rel="noopener">babel-polyfill</a></h3><blockquote>
+<p>Babel 默认只转换新的 JavaScript 语法，而不转换新的 API。</p>
+</blockquote>
+<p>Babel 可以编译 <code>let</code>、<code>const</code> 等特性，但是诸如 Iterator、Generator、Reflect、Promise 等全局对象，或者数组实例的 find 这些新的方法并不会得到编译。如果想让这个方法运行，必须使用 babel-polyfill，<strong>同时要保证这个 polyfill 在你的所有其他脚本之前就要加载执行。因为编译产出为 ES5 代码，所以又要处在 ES5 垫片 <a href="https://github.com/es-shims/es5-shim" target="_blank" rel="noopener">es5-shim</a>、ES6 垫片 <a href="https://github.com/paulmillr/es6-shim" target="_blank" rel="noopener">es6-shim</a> 之后。</strong>（垫片就是在低级环境中使用高级语法时，手动实现高级功能，模拟高级环境）</p>
+<p>实际情况中，在公共组件 <code>&lt;App /&gt;</code> 中开头引入：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// Babel Polyfill</span>
+<span class="token comment" spellcheck="true">// Error: only one instance of babel-polyfill is allowed</span>
+<span class="token comment" spellcheck="true">// https://github.com/stylelint/stylelint/issues/1316</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>global<span class="token punctuation">.</span>_babelPolyfill<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 为了解决重复引入的问题</span>
+  <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'babel-polyfill'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>项目开发时将这个组件作为最外层容器使用即可。</p>
+<h3 id="Babel-配置-Presets（转码规则）"><a href="#Babel-配置-Presets（转码规则）" class="headerlink" title="Babel 配置 - Presets（转码规则）"></a>Babel 配置 - Presets（转码规则）</h3><h4 id="-1"><a href="#-1" class="headerlink" title></a><a href="http://babeljs.io/docs/plugins/preset-env" target="_blank" rel="noopener">babel-preset-env</a></h4><p>随着浏览器和 Node.js 的版本迭代，对新语法的支持也越来越好。但非常尴尬的是，我们总是使用 Babel 把所有代码一股脑转换成 ES5。这意味着我们抛弃了性能优秀的 <code>let</code>、<code>const</code> 关键字，放弃了简短的代码，而选择了又长又丑像坨屎的经过变换后的代码。</p>
+<p>即使仅仅将代码跑在对 ES5 支持度在 99% 的 Node 6 上，一旦使用了 <code>import</code> 关键字，你就得用 Babel 对代码进行转换，一般还是全部转换为 ES5，辣鸡 Node.js 竟然还不支持 <code>import</code> 和 <code>export。</code></p>
+<blockquote>
+<p>那么有没有什么工具能智能识别当前运行环境，并且进行适当的转换，以及填充适当的 polyfill 呢？</p>
+</blockquote>
+<p>还真有，而且是 Babel 官方提供的，一个名为 babel-preset-env 的插件。它不需要你自行添加任何 preset，比如我们最常用的 es2015，它能根据设置智能转换代码。</p>
+<h4 id="-2"><a href="#-2" class="headerlink" title></a><a href="http://babeljs.io/docs/plugins/preset-react/" target="_blank" rel="noopener">babel-preset-react</a></h4><p>React 转码规则，支持编译 .jsx 文件。</p>
+<h4 id="-3"><a href="#-3" class="headerlink" title></a><a href="https://babeljs.io/docs/plugins/preset-stage-0" target="_blank" rel="noopener">babel-preset-stage-0</a></h4><p>ES7 不同阶段语法提案的转码规则，涵盖了 <a href="https://babeljs.io/docs/plugins/preset-stage-1" target="_blank" rel="noopener">stage-1</a>、<a href="https://babeljs.io/docs/plugins/preset-stage-2" target="_blank" rel="noopener">stage-2</a>、<a href="https://babeljs.io/docs/plugins/preset-stage-3" target="_blank" rel="noopener">stage-3</a>。</p>
+<h3 id="Babel-配置-Plugins（插件）"><a href="#Babel-配置-Plugins（插件）" class="headerlink" title="Babel 配置 - Plugins（插件）"></a>Babel 配置 - Plugins（插件）</h3><h4 id="-4"><a href="#-4" class="headerlink" title></a><a href="https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types" target="_blank" rel="noopener">babel-plugin-transform-react-remove-prop-types</a></h4><p>在 webpack production 编译模式下移除 React propTypes 定义来减小编译后的 js 文件体积。</p>
+<h4 id="-5"><a href="#-5" class="headerlink" title></a><a href="https://github.com/ant-design/babel-plugin-import" target="_blank" rel="noopener">babel-plugin-import</a></h4><p>实现 <a href="https://mobile.ant.design" target="_blank" rel="noopener">antd-mobile</a> 的按需加载，另外此插件配合 style 属性可以做到模块样式的按需自动加载。</p>
+<h3 id="Babel-配置文件"><a href="#Babel-配置文件" class="headerlink" title="Babel 配置文件"></a>Babel 配置文件</h3><p>Babel 的配置文件是 <code>.babelrc</code>，存放在项目的根目录下，用来设置上述转码规则和插件。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  <span class="token string">"presets"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"env"</span><span class="token punctuation">,</span>
+    <span class="token string">"react"</span><span class="token punctuation">,</span>
+    <span class="token string">"stage-0"</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token string">"env"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"production"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"plugins"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">[</span><span class="token string">"transform-react-remove-prop-types"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+          <span class="token string">"mode"</span><span class="token punctuation">:</span> <span class="token string">"wrap"</span><span class="token punctuation">,</span>
+          <span class="token string">"ignoreFilenames"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"node_modules"</span><span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">]</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"plugins"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">[</span><span class="token string">"import"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      <span class="token string">"style"</span><span class="token punctuation">:</span> <span class="token string">"css"</span><span class="token punctuation">,</span>
+      <span class="token string">"libraryName"</span><span class="token punctuation">:</span> <span class="token string">"antd-mobile"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="Babel-ESLint"><a href="#Babel-ESLint" class="headerlink" title="Babel ESLint"></a>Babel ESLint</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// .eslintrc</span>
+parser<span class="token punctuation">:</span> babel<span class="token operator">-</span>eslint <span class="token comment" spellcheck="true">// ESLint 解析器</span>
+</code></pre>
+<p>ESLint 允许自定义解析器。但是 ESLint 不支持 Babel 支持的一些语法节点。使用 <a href="https://github.com/babel/babel-eslint" target="_blank" rel="noopener">babel-eslint</a> 时，ESLint 将被修改，代码将转换为 ESLint 可以理解的代码。所有位置信息（如行号，列）也保留，以便轻松跟踪错误。</p>
+<h2 id="Webpack-2-x"><a href="#Webpack-2-x" class="headerlink" title="Webpack (2.x)"></a>Webpack (2.x)</h2><h3 id="配置-amp-ES6"><a href="#配置-amp-ES6" class="headerlink" title="配置 &amp; ES6"></a>配置 &amp; ES6</h3><p>用 <code>webpack.config.babel.js</code> 命名 Webpack 的配置文件，会先经过 Babel 的转码，So 可以使用 ES6 语法咯。</p>
+<h3 id="按需配置"><a href="#按需配置" class="headerlink" title="按需配置"></a>按需配置</h3><p>webpack 2.x 默认支持从命令行传参到配置文件实现按需配置。</p>
+<pre class=" language-shell"><code class="language-shell">// Command line
+webpack -- --env.x=xxx
+</code></pre>
+<h3 id="忽略解析"><a href="#忽略解析" class="headerlink" title="忽略解析"></a>忽略解析</h3><pre class=" language-javascript"><code class="language-javascript">noParse<span class="token punctuation">:</span> vendor<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>v <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>v<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">$`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>webpack.module.noParse 可防止 webpack 解析那些任何与给定正则表达式相匹配的文件，忽略大型的 library 可以提高构建性能。</p>
+<h3 id="babel-loader-之-cacheDirectory"><a href="#babel-loader-之-cacheDirectory" class="headerlink" title="babel-loader 之 cacheDirectory"></a>babel-loader 之 cacheDirectory</h3><pre class=" language-javascript"><code class="language-javascript">use<span class="token punctuation">:</span> <span class="token string">'babel-loader?cacheDirectory'</span>
+</code></pre>
+<p><code>cacheDirectory</code> 可以缓存处理过的模块，对于没有修改过的文件不会再重新编译，有着2倍以上的速度提升，这对于 rebuild 有着非常大的性能提升。</p>
+<h3 id="动态匹配路径"><a href="#动态匹配路径" class="headerlink" title="动态匹配路径"></a>动态匹配路径</h3><pre class=" language-javascript"><code class="language-javascript">use<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> loaders <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      loader<span class="token punctuation">:</span> <span class="token string">'file-loader'</span><span class="token punctuation">,</span>
+      options<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        regExp<span class="token punctuation">:</span> <span class="token regex">/components\/(.*)\//</span><span class="token punctuation">,</span>
+        name<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`[1]/[name]-[hash:8].[ext]`</span></span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isProd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    loaders<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>imageWebpackLoaderRule<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> loaders
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>regExp 中匹配到的分组内容将会对应到下面的 [1] 处。</p>
+<h3 id="Webpack-Hash-的困扰"><a href="#Webpack-Hash-的困扰" class="headerlink" title="Webpack Hash 的困扰"></a>Webpack Hash 的困扰</h3><p>由于 Webpack 的<a href="https://github.com/webpack/webpack/issues/1315" target="_blank" rel="noopener">一个问题</a>，生成哈希值的方法并不是确定的。为了保证哈希值是根据文件内容生成的，需要使用 <a href="https://github.com/erm0l0v/webpack-md5-hash" target="_blank" rel="noopener">webpack-md5-hash</a> 插件</p>
+<p>当更改了代码的任何一部分，即使剩下的文件内容没有被修改，入口也会被更新以放入新的清单。这样反过来也就导致新的哈希值，影响了长期缓存。为了修复这个问题，使用插件 <a href="https://github.com/soundcloud/chunk-manifest-webpack-plugin" target="_blank" rel="noopener">chunk-manifest-webpack-plugin</a> 来把清单导出到单独的 JSON 文件中。</p>
+<blockquote>
+<p>延伸阅读：<a href="https://sebastianblade.com/using-webpack-to-achieve-long-term-cache" target="_blank" rel="noopener">用 webpack 实现持久化缓存</a></p>
+</blockquote>
+<h3 id="Webpack-Clean-父级目录的权限问题"><a href="#Webpack-Clean-父级目录的权限问题" class="headerlink" title="Webpack Clean 父级目录的权限问题"></a>Webpack Clean 父级目录的权限问题</h3><p>在任务开始时，经常会使用插件 <a href="https://github.com/johnagan/clean-webpack-plugin" target="_blank" rel="noopener">clean-webpack-plugin</a> 来清除上次打包生成的文件，以保证目录的干净。但是，如果你想要清除父级目录，会遇到一个错误提示：</p>
+<blockquote>
+<p>xxx/xxx must be inside the project root…</p>
+</blockquote>
+<p>解决办法是设置 <code>root</code> 参数，指向 webpack 编译时的当前目录。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">new</span> <span class="token class-name">CleanPlugin</span><span class="token punctuation">(</span>somePath<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  root<span class="token punctuation">:</span> process<span class="token punctuation">.</span><span class="token function">cwd</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="提升-Webpack-压缩-JS-文件的速度"><a href="#提升-Webpack-压缩-JS-文件的速度" class="headerlink" title="提升 Webpack 压缩 JS 文件的速度"></a>提升 Webpack 压缩 JS 文件的速度</h3><p>Webpack 提供的 UglifyJS 插件由于采用单线程压缩，速度很慢。使用 <a href="https://github.com/gdborton/webpack-parallel-uglify-plugin" target="_blank" rel="noopener">webpack-parallel-uglify-plugin</a> 可以并行运行 UglifyJS 插件，可有效减少构建时间。</p>
+<h2 id="前端测试"><a href="#前端测试" class="headerlink" title="前端测试"></a>前端测试</h2><p>有关单元测试、端到端测试的内容，可以参考@闲总的文章<a href="/2017/06/01/单元测试/" title="《React--单元测试》">《React--单元测试》</a>。</p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/06/14/framework-qa/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/06/14/framework-qa/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/06/15/Web-API之DeviceOrientationEvent-与DeviceMotionEvent/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/06/10/Gleaning-css/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

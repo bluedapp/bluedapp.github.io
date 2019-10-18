@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            ReactNative--项目初探 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",ReactNative">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="ReactNative--项目初探 | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="ReactNative"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#RN-项目初探"><span class="post-toc-number">1.</span> <span class="post-toc-text">RN 项目初探</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-RN-组件"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 RN 组件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三方模块"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">第三方模块</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-面板切换"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">1 面板切换</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-Banner-滑动"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">2 Banner 滑动</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-主面板内容部分"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">3 主面板内容部分</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ReactNative-内部组件"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">ReactNative 内部组件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-关注的推荐列表"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">1 关注的推荐列表</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-触摸点击"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">2 触摸点击</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-项目分析"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 项目分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#组件是如何实现下拉刷新的"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">组件是如何实现下拉刷新的</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="/img/mxx/20170714_RN/rn_banner.png">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          ReactNative--项目初探
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars0.githubusercontent.com/u/20737114?v=3" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/mengxxSELF">mxx</a>
+    </strong>
+    <span>7月 14, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC0UlEQVR42u3aUY7bMAwE0Nz/0u0BtnZnKLUIpOevYJHYegoQLjn6/Lry+mBjY2NjY2NjY2N/JfsTXz8/9Ydb/3j/yuunJw7XjI2NjX00+y8//fFSnvDJ35NNXFkzNjY29g3spwKQ8N4/lZTMx+UG64nug42NjY39DxbdNjPY2NjY2HsLWD4SSu7/1Hi0RRQbGxv7ZnYyoFlvXdpIoC2B2NjY2Hey89D0e17/13wbGxsb+4vZ7fXeMOSlMYlvkxalWDk2Njb2oey8MKyQ2jYmeXryTmxsbOzb2PmiV7Ysf1YeIUcBAzY2Nvah7JbUthzvjHbj8kg4GiphY2NjH8pub9oe8Uki5CT0rY8WYWNjYx/KbhuMXWHAbOtnZQ8bGxv7BnYbo7bbseHAzcLwCxsbG/ts9myhu9qMdiA1CyGwsbGxz2bXZSAeJ70venaHWUiMjY2NfTb7vdjMDl/mTU4+NpqF09jY2Ng3sPNxUhKs5oOhtr0pAt3ZmVNsbGzs49izMrY+6J+1K0logY2NjX0qe1bM8pKWD/pXmploOIWNjY19KDtvLdoxUH6Asg0e2ogXGxsb+2z23vZjfRi00sBgY2NjY68PepIDOm3h3FXGsLGxsU9lrxyRaUtUW/CSUpp8JdjY2Ng3sNuh0uxQZl7k2oFR9HRsbGzsy9i7Fl20CrMjlfFTsLGxse9kt4dm8tKyfrinDhiwsbGxL2PPDlauhLttm5GHCtjY2Nj3sPOotW05drUi+dOxsbGx72G3VzvKXx9CtfePhkrY2NjYB7HbwrASG7QNxiyQfrwDNjY29tHsWdFaWdCuZiYveNjY2Ng3sJPy027BLADedWFjY2Njt+9pw+D1EKIIlbGxsbGxR1sw25p8pLXtpBI2Njb2Eey8YUg+O4t+kxC3/XqwsbGxb2Cv/Ou/3rTksW67cmxsbOwb2Pdc2NjY2NjY2NjY2F9z/QZgo7nM7CasBwAAAABJRU5ErkJggg==">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/ReactNative/">ReactNative</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="RN-项目初探"><a href="#RN-项目初探" class="headerlink" title="RN 项目初探"></a>RN 项目初探</h2><ul>
+<li>1 RN组件</li>
+<li>2 项目分析</li>
+</ul>
+<a id="more"></a>
+<h2 id="1-RN-组件"><a href="#1-RN-组件" class="headerlink" title="1 RN 组件"></a>1 RN 组件</h2><h3 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h3><h4 id="1-面板切换"><a href="#1-面板切换" class="headerlink" title="1 面板切换"></a>1 面板切换</h4><p>三个主面板的切换以及分类页面有子级面板 使用的是模块 <a href="https://github.com/skv-headless/react-native-scrollable-tab-view" target="_blank" rel="noopener">react-native-scrollable-tab-view</a></p>
+<pre class=" language-html"><code class="language-html">&lt;ScrollableTabView {...ScrollProps} renderTabBar={() => <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ScrollTabBar</span> <span class="token punctuation">/></span></span>} >
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HotList</span> <span class="token attr-name">{...HotListProps}</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VarietyGroup</span> <span class="token attr-name">{...VarietyGroupProps}</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FollowList</span> <span class="token attr-name">{...FollowListProps}</span>  <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ScrollableTabView</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>主面板以及子级面板都没有使用组件提供的默认tab样式 而是自定义了tab组件</p>
+<pre class=" language-javascript"><code class="language-javascript">renderTabBar<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&lt;</span>ScrollTabBar <span class="token operator">/</span><span class="token operator">></span> <span class="token punctuation">}</span>
+</code></pre>
+<p>组件的面板的切换并没有使用默认处理的方法 而是在用户点击Tab的时候调用goToPage方法 进行面板的切换</p>
+<pre class=" language-html"><code class="language-html">-- other code --
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TouchableOpacity</span>  <span class="token attr-name">onPress</span><span class="token attr-value"><span class="token punctuation">=</span>{handlerPress}</span> <span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Text</span><span class="token punctuation">></span></span>
+      {item.name}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Text</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TouchableOpacity</span><span class="token punctuation">></span></span>
+
+-- other code --
+handlerPress (index) {
+  this.props.goToPage(index)
+}
+
+-- other code --
+</code></pre>
+<h4 id="2-Banner-滑动"><a href="#2-Banner-滑动" class="headerlink" title="2 Banner 滑动"></a>2 Banner 滑动</h4><p>首页的Banner部分 使用第三方模块 <a href="https://github.com/leecade/react-native-swiper" target="_blank" rel="noopener">react-native-swiper</a></p>
+<h4 id="3-主面板内容部分"><a href="#3-主面板内容部分" class="headerlink" title="3 主面板内容部分"></a>3 主面板内容部分</h4><p>面板的内容部分使用的是第三方组件 <a href="https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/" target="_blank" rel="noopener">PullToRefreshListView</a></p>
+<p>这个组件提供了下拉刷新以及上滑加载的功能</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>PullToRefreshListView
+  viewType<span class="token operator">=</span><span class="token punctuation">{</span>PullToRefreshListView<span class="token punctuation">.</span>constants<span class="token punctuation">.</span>viewType<span class="token punctuation">.</span>listView<span class="token punctuation">}</span>
+  dataSource<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>dataSource<span class="token punctuation">}</span>
+  renderRow<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>_renderRow<span class="token punctuation">}</span>
+  renderHeader<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>_renderHeader<span class="token punctuation">}</span>
+  renderFooter<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>_renderFooter<span class="token punctuation">}</span>
+  onRefresh<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>_onRefresh<span class="token punctuation">}</span>
+  onLoadMore<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>_onLoadMore<span class="token punctuation">}</span>
+  <span class="token operator">--</span> other props <span class="token operator">--</span>
+<span class="token operator">/</span><span class="token operator">></span>
+</code></pre>
+<p>组件还提供了一个方法beginRefresh  用于强制执行一次下拉刷新</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">beginRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="ReactNative-内部组件"><a href="#ReactNative-内部组件" class="headerlink" title="ReactNative 内部组件"></a>ReactNative 内部组件</h3><h4 id="1-关注的推荐列表"><a href="#1-关注的推荐列表" class="headerlink" title="1 关注的推荐列表"></a>1 关注的推荐列表</h4><p>关注面板的推荐部分 使用RN内部提供的滑动组件 <a href="http://reactnative.cn/docs/0.46/scrollview.html#content" target="_blank" rel="noopener">ScrollView</a></p>
+<p>此模块在默认状态下是垂直方向滑动的</p>
+<h4 id="2-触摸点击"><a href="#2-触摸点击" class="headerlink" title="2 触摸点击"></a>2 触摸点击</h4><p><a href="http://reactnative.cn/docs/0.46/touchableopacity.html#content" target="_blank" rel="noopener">TouchableOpacity</a>组件用于封装视图，使其可以正确响应触摸操作</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>TouchableOpacity onPress<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>_onPressButton<span class="token punctuation">}</span><span class="token operator">></span>
+  <span class="token operator">&lt;</span>Image  source<span class="token operator">=</span><span class="token punctuation">{</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'image!myButton'</span><span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>TouchableOpacity<span class="token operator">></span>
+</code></pre>
+<h2 id="2-项目分析"><a href="#2-项目分析" class="headerlink" title="2 项目分析"></a>2 项目分析</h2><p>1 核心组件 List</p>
+<p>项目核心组件 List 处理页面的渲染</p>
+<p>使用上文中提到的组件<a href="https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/" target="_blank" rel="noopener">PullToRefreshListView</a></p>
+<p>三个主面板的数据渲染都是基于List类</p>
+<p>List中 定义state对象结构</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> ds <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListView<span class="token punctuation">.</span>DataSource</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  rowHasChanged <span class="token punctuation">(</span>r1<span class="token punctuation">,</span> r2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> r1<span class="token punctuation">.</span>lid <span class="token operator">!==</span> r2<span class="token punctuation">.</span>lid
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  ds<span class="token punctuation">,</span>
+  dataSource<span class="token punctuation">:</span> ds<span class="token punctuation">.</span><span class="token function">cloneWithRows</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里的dataSource 就是下文进行页面渲染的数据来源</p>
+<pre class=" language-javascript"><code class="language-javascript">dataSource<span class="token operator">=</span><span class="token punctuation">{</span>state<span class="token punctuation">.</span>dataSource<span class="token punctuation">}</span>
+</code></pre>
+<p>所以页面在处理上拉获取更多数据 或者 下滑获取最新数据时 只需要重置state就可以了</p>
+<p>2 数据组件 xxxListBase.js</p>
+<p><strong> 此组件继承自List组件 </strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">RecommendListBase</span> <span class="token keyword">extends</span> <span class="token class-name">List</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>此组件只是定义了几个获取数据的方法</p>
+<pre class=" language-javascript"><code class="language-javascript"> <span class="token keyword">async</span> <span class="token function">_getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">}</span>
+ <span class="token keyword">async</span> <span class="token function">_getLoadMoreData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">}</span>
+ <span class="token keyword">async</span> <span class="token function">_getRefreshData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">}</span>
+</code></pre>
+<p>3 状态组件 xxxList.js</p>
+<p><strong> 此组件继承自同组的xxxListBase组件 </strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">RecommendList</span> <span class="token keyword">extends</span> <span class="token class-name">RecommendListBase</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>  
+</code></pre>
+<p>因为继承自同组base类  所以可以调用其对应父类的方法 从而用来处理状态state</p>
+<pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">async</span> _onLoadMore <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token operator">--</span> other code <span class="token operator">--</span><span class="token operator">-</span>
+    <span class="token keyword">let</span> getData <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>data<span class="token punctuation">:</span> getData<span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token operator">--</span> other code <span class="token operator">--</span><span class="token operator">-</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">async</span> _onRefresh <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">}</span>
+</code></pre>
+<p>4 项目入口</p>
+<p>项目的入口文件 APP/index.js  是上文中提到的主面板部分</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ScrollableTabView</span> <span class="token attr-name">{...ScrollProps}</span> <span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>HotList</span> <span class="token attr-name">{...HotListProps}</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VarietyGroup</span> <span class="token attr-name">{...VarietyGroupProps}</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FollowList</span> <span class="token attr-name">{...FollowListProps}</span>  <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ScrollableTabView</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>可以看到 每一个子元素都是一个状态组件 每一个状态组件可以追溯到最终的父类 List 从而具有刷新与获取更多数据的功能</p>
+<p>5 祖宗组件</p>
+<p>项目入口文件 index 继承自父类 libs/MethodBase</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Live</span> <span class="token keyword">extends</span> <span class="token class-name">MethodBase</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>MethodBase 组件中主要封装一些与客户端交互的方法 和 一些基本的方法 比如 获取数据 获取语言等</p>
+<h3 id="组件是如何实现下拉刷新的"><a href="#组件是如何实现下拉刷新的" class="headerlink" title="组件是如何实现下拉刷新的"></a>组件是如何实现下拉刷新的</h3><p><a href="https://www.processon.com/view/link/59702617e4b0b3c2da59db8d" target="_blank" rel="noopener">下拉刷新展示</a><br><img src="/img/mxx/20170714_RN/rn_refresh.png" alt="rn"></p>
+<p>5.1 当第一次进入页面 或者说 通过点击Tab第一次进入几个主面板的时候</p>
+<p>触发对应List组件生命周期函数 componentDidMount</p>
+<pre class=" language-javascript"><code class="language-javascript">componentDidMount <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">--</span> Hide Code <span class="token operator">--</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_pullToRefreshListView<span class="token punctuation">.</span><span class="token function">beginRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>实现一次强制下拉刷新 去执行对应状态组件中的方法</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">async</span> _onRefresh <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token operator">...</span><span class="token operator">...</span><span class="token punctuation">}</span>
+</code></pre>
+<p>从而引起state变化 -&gt; 变动核心组件List 中dataSource属性值 -&gt; 页面数据初次渲染</p>
+<p>当面板已经完成初次加载之后 数据的刷新就需要手动将页面下滑一定距离 从而实现数据刷新</p>
+<p><strong> 分类列表的子级面板原理相同 </strong></p>
+<p>5.2 tab切换 如果间隔时间超过五分钟 切换时自动刷新</p>
+<p>5.2.1 主面板 三个tab之间切换 如何实现五分钟之后自动刷新</p>
+<p>主面板的生命周期函数 在面板切换时候</p>
+<pre class=" language-javascript"><code class="language-javascript">componentWillUpdate <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">--</span> other code <span class="token operator">--</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span><span class="token function">xxxListRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然后在父级组件 index.js 找到此函数</p>
+<pre class=" language-javascript"><code class="language-javascript">xxxListRefresh <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_xxxList<span class="token punctuation">.</span><span class="token function">autoRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然后在 List中 定义有定义autoRefresh方法</p>
+<pre class=" language-javascript"><code class="language-javascript">autoRefresh <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>enableAutoRefresh<span class="token punctuation">)</span> <span class="token keyword">return</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>enableAutoRefresh <span class="token operator">=</span> <span class="token boolean">false</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_pullToRefreshListView <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_pullToRefreshListView<span class="token punctuation">.</span><span class="token function">beginRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里有一个标志位 enableAutoRefresh 用来判断此面板是否可以利用beginRefresh进行强制刷新</p>
+<p>而此标志位就是五分钟刷新的关键:<br>  如果组件展示时间已经大于五分钟 则此标志位为TRUE -&gt; 强制刷新<br>  如果组件展示时间已经小于五分钟 则此标志位为FALSE -&gt; 直接return  无法强制刷新页面</p>
+<p><strong> 组件在哪里改变此标志位 </strong></p>
+<p>在 List 组件中 生命周期 componentDidMount 中 将此标志位设置为 TRUE</p>
+<pre class=" language-javascript"><code class="language-javascript">componentDidMount <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">--</span> hide code <span class="token operator">--</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>enableAutoRefresh <span class="token operator">=</span> <span class="token boolean">false</span>
+  <span class="token operator">--</span> hide code <span class="token operator">--</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>所以所有的面板在首次渲染之后 此标志位都已经为FALSE了 无法再去执行 autoRefresh 方法</p>
+<p><strong> 组件在哪里改变此标志位 为TRUE </strong></p>
+<p>在祖宗级组件 MethodBase 中</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">if</span> <span class="token punctuation">(</span>ifEnough<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">shouldAutoRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>当状态足够五分钟  执行 shouldAutoRefresh 方法 此方法为</p>
+<pre class=" language-javascript"><code class="language-javascript">shouldAutoRefresh <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_hotList<span class="token punctuation">.</span><span class="token function">shouldAutoRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_varietyGroup<span class="token punctuation">.</span><span class="token function">shouldAutoRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token operator">--</span> other code <span class="token operator">--</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_hotList<span class="token punctuation">.</span><span class="token function">autoRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token operator">--</span> other code <span class="token operator">--</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>_varietyGroup<span class="token punctuation">.</span><span class="token function">autoRefresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token operator">--</span> other code <span class="token operator">--</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里执行组件的 shouldAutoRefresh 方法 此方法在 List 中</p>
+<pre class=" language-javascript"><code class="language-javascript">shouldAutoRefresh <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>enableAutoRefresh <span class="token operator">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>用以将标志位置为 TRUE 从而可以执行 autoRefresh 方法 页面实现强制刷新</p>
+<p><a href="https://www.processon.com/view/link/597015f4e4b0b3c2da59c8d2" target="_blank" rel="noopener">项目流程图展示</a><br><img src="/img/mxx/20170714_RN/rn.png" alt="rn"></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/07/14/ReactNative项目初探/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/07/14/ReactNative项目初探/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/07/30/redux中间件/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/07/03/Canvas初识/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

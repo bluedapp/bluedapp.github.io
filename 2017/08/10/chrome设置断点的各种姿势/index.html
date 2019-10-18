@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            Chrome设置断点的各种姿势 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",Chrome">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Chrome设置断点的各种姿势 | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="Chrome"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在JavaScript代码中设置断点"><span class="post-toc-number">1.</span> <span class="post-toc-text">在JavaScript代码中设置断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在JavaScript代码中设置条件断点"><span class="post-toc-number">2.</span> <span class="post-toc-text">在JavaScript代码中设置条件断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#删除或禁用JavaScript断点"><span class="post-toc-number">3.</span> <span class="post-toc-text">删除或禁用JavaScript断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在DOM元素上设置断点"><span class="post-toc-number">4.</span> <span class="post-toc-text">在DOM元素上设置断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#XHR请求的断点"><span class="post-toc-number">5.</span> <span class="post-toc-text">XHR请求的断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#各种事件的断点"><span class="post-toc-number">6.</span> <span class="post-toc-text">各种事件的断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#异常断点"><span class="post-toc-number">7.</span> <span class="post-toc-text">异常断点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小记"><span class="post-toc-number">8.</span> <span class="post-toc-text">小记</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="/img/jarvis/how-to-add-breakpoints/banner.gif">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          Chrome设置断点的各种姿势
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars1.githubusercontent.com/u/9568094?v=4" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/jiasm">jiasm</a>
+    </strong>
+    <span>8月 10, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC3klEQVR42u3by24iQQwFUP7/p2e2WQxwr93RQPXpVRS6oY6RYvmRx59bXg9sbGxsbGxsbGzsj2Q/4uvZ/a/f5/VTP199dqp/AMozY2NjY9+B/eZPf3CsHPbsqYS3OjM2Njb2DdjJxySJKue14NmZsbGxsbGTwyXpZBMybGxsbOxr2W0LadZOeh1ubGxsbOxZg+b1/Xmxkbec2jNgY2Nj35PdDno/4ef/MN/GxsbG/kj25moTTJL8NsPdN6fFxsbGPpQ9GwMkg4GWcdXK5rCXho2Njf217E2KakPWhik/YbQehI2NjX0oe7Oak2PyNtaGOpyKYGNjY385O08es1HrZljbFiRvvgBsbGzsQ9l5eZAkszYoV51hlbexsbGxj2Dno9n8w9qG1GY4ERVU2NjY2Ieyk9SyaTy1I4c29EUphY2NjX0oO2/uFwvro2WdzQDgVyowbGxs7K9iz/7FKA9H3pbKly/rtIeNjY19KLttBs3a/XkinI0iorSKjY2NfTT72sFq3r7P13HaYQY2Njb23dhtW6ctDPIklwSlHRVjY2Nj34fdtofaIXEegvY9hys72NjY2Eew22FAm/zyV69a1rxgKoKNjY19BLsdtebvkL/atrSKUgQbGxv7OHbeSMrT2yyI7YhitamEjY2NfQQ7b+LMEkxeeORpMmlFRb00bGxs7IPY+bpMXoS0QZwFrlj3wcbGxj6UnQ9384Hr5tm83d/+HhsbG/tUdtvonwXrqlJkluqwsbGxz2bnY9T9wKBtDz0WVzHfxsbGxv5ydnvlo4J9ymlLjjdfHjY2Nvah7DYl1GkjaDy17f58zQgbGxv7Pux8iWe2ZNN+yj6s2NjY2PdkJ4XEcMhavttVjSRsbGxs7N9jt6GZLfpgY2NjY+/vyRNSW/bkTShsbGzs+7D3Q9ZZmrnqqTf3Y2NjYx/N3gx6f7ukScqYqBzCxsbGPpR9nwsbGxsbGxsbGxv7Y66/zvTYu5LILmUAAAAASUVORK5CYII=">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Chrome/">Chrome</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <blockquote>
+<p>最近在翻看Chrome devtools的文档，刚看到了关于断点调试这里，感觉发现了新大陆-。-<br>本文记录一下如何在Chrome上设置断点，以及可以设置哪些断点，并不涉及具体调试相关的操作。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="在JavaScript代码中设置断点"><a href="#在JavaScript代码中设置断点" class="headerlink" title="在JavaScript代码中设置断点"></a>在JavaScript代码中设置断点</h3><blockquote>
+<p>刚工作时被leader安利了Chrome浏览器，那时一说到调试，就知道这一个操作<br>以为在行号上单击一下就是打断点，就是会调试了:)</p>
+</blockquote>
+<p>当然这也是最最基本的打断点的方式了，当然了，相较于 <em>调试全靠alert</em> 已经高端很多了。<br>首先需要打开<code>Devtools</code>切换到<code>Source</code>页签，然后在左侧<code>file navigation</code>中找到我们要设置断点的文件并打开。<br>在打开的页面上单击对应的行号即可设置断点。<br>同时也可以通过在行号上右键点击<code>Add breakpoint</code>来设置断点。<br>当断点触发时，整个页面会处于暂停状态，并会切换到Source页签断点处方便调试，直到终止该断点调试后页面才会继续运行。<br>设置断点的行号上会显示一个蓝色的矩形来告诉你这里有一个断点。</p>
+<p><em>P.S. 当一个表达式跨行时，添加的断点会默认下移到该表达式结束后的一行</em></p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-1.png" alt></p>
+<h3 id="在JavaScript代码中设置条件断点"><a href="#在JavaScript代码中设置条件断点" class="headerlink" title="在JavaScript代码中设置条件断点"></a>在JavaScript代码中设置条件断点</h3><blockquote>
+<p>当知道了如何在行号上单击来添加断点，已经能满足最最最基本的调试了。</p>
+</blockquote>
+<p>但如果遇到一些特殊情况，断点添加起来不是那么的舒服的时候要肿么办呢？<br>比如说我写了一个循环，该循环会执行<code>10</code>次，可是我发现程序在第<code>8</code>次执行时的结果并不是我想要的。<strong>（不禁回想起刚工作时，有类似的问题，我当时的处理方式就是一手托腮，另一只手放在F8键上，狂按数十下后正襟危坐，开始调试）</strong><br>显然，<code>Chrome</code>已经帮我们想到了这种场景，我们可以通过添加一些条件断点来避免一些无意义的断点。</p>
+<p>我们可以通过右键行号，选择<code>Add conditional breakpoint</code>来添加一个带有条件的断点。</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-2.png" alt></p>
+<p>这是我们会看到界面上多出了一个输入框，并提示我们将在XXX行设置一个只会满足下列表达式的时候才会暂停的断点-.-</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-3.png" alt></p>
+<p>结合上边的场景，我们就在输入框中键入如下表达式，当循环计数器<code>count</code>全等于<code>8</code>时，会暂停页面并进入调试。<br>回车确认后我们就得到了一个金黄色的矩形来标识。</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-4.png" alt></p>
+<h3 id="删除或禁用JavaScript断点"><a href="#删除或禁用JavaScript断点" class="headerlink" title="删除或禁用JavaScript断点"></a>删除或禁用JavaScript断点</h3><p>删除断点的方式，选择菜单栏中的<code>Remove breakpoint</code>。<br>禁用断点的方式，选择菜单栏中的<code>Disable breakpoint</code> 或者直接在设置了断点的行号上单击即可。</p>
+<p>或者我们也可以通过<code>debugger</code>模块来统一管理所有的断点。<br>点击断点对应的复选框可以禁用断点，右键选择<code>Remove breakpoint</code>也可删除断点。</p>
+<p>以及一些对断点的其他操作也可以通过右键菜单来实现，禁用激活所有的断点之类的。</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-5.png" alt></p>
+<h3 id="在DOM元素上设置断点"><a href="#在DOM元素上设置断点" class="headerlink" title="在DOM元素上设置断点"></a>在DOM元素上设置断点</h3><blockquote>
+<p>断点不仅仅可以设置在JS代码上，还可以在DOM元素上设置断点<br>刚刚看到时我都惊呆了，没想到竟然还有这种操作。</p>
+</blockquote>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-6.png" alt></p>
+<p>我们可以设置三种断点</p>
+<ul>
+<li><code>subtree modifications</code>子节点内容的的修改删除新增（子节点的属性修改不会触发，当前节点的修改不会触发）</li>
+<li><code>attribute modifications</code>当前节点的属性修改删除新增</li>
+<li><code>node removal</code>当前节点被移除</li>
+</ul>
+<p>我们需要切换到<code>Elements</code>页签，在想要添加断点的DOM节点上右键点击，在最下边的<code>Break on</code>菜单项可以找到这三个选项</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-6.png" alt></p>
+<p>当我们的脚本触发了DOM的修改时，<code>devtools</code>会直接跳转到<code>Source</code>页签并定位到修改DOM的那行代码上</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-8.png" alt></p>
+<p>同时我们还可以通过<code>debugger</code>模块来管理所有的DOM断点，<br>可以看到所有的DOM断点，以及他们所监听的类型，<br>也可以进行一键删除之类的操作。</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-7.png" alt></p>
+<h3 id="XHR请求的断点"><a href="#XHR请求的断点" class="headerlink" title="XHR请求的断点"></a>XHR请求的断点</h3><p>我们可以通过<code>debugger</code>下的<code>XHR Breakpoints</code>来管理<code>XHR</code>请求相关的断点。<br>点击➕新增一个断点，我们可以选择输入一个链接地址，当一个<code>XHR</code>请求的链接与所输入的值匹配时，便会中断进程进入断点。</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-9.png" alt></p>
+<p>或者我们可以选择直接回车，监听所有的<code>XHR</code>请求</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-10.png" alt></p>
+<p><em>P.S.如果想要监听<code>XHR</code>请求的某个状态，可以参考下文</em></p>
+<h3 id="各种事件的断点"><a href="#各种事件的断点" class="headerlink" title="各种事件的断点"></a>各种事件的断点</h3><blockquote>
+<p>用了这个再也不用担心多人开发时找不到事件处理的代码写在哪里了。</p>
+</blockquote>
+<p>这里边可以监听的事件挺全的。。就是勾选复选框即可，当触发某个事件时，便会跳转到对应的代码中去。<br>截图展开部分就是<code>XHR</code>请求周期的各种状态事件</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-11.png" alt></p>
+<h3 id="异常断点"><a href="#异常断点" class="headerlink" title="异常断点"></a>异常断点</h3><p>当代码出现异常时，我们会在<code>Console</code>页签看到错误提醒，并可以通过后边的锚点找到对应的文件以及定位到出错的代码行。</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-12.png" alt></p>
+<p>但是这时代码已经抛出了异常，我们可以通过设置异常断点，在抛出异常前进入断点进行调试。<br>点击<code>debugger</code>上边的的这个小图标，就可以设置在程序抛出异常时进入断点。（灰色为禁用-.-悬浮icon会有提示）</p>
+<p><img src="/img/jarvis/how-to-add-breakpoints/screenshot-13.png" alt><br><img src="/img/jarvis/how-to-add-breakpoints/screenshot-14.png" alt></p>
+<h3 id="小记"><a href="#小记" class="headerlink" title="小记"></a>小记</h3><p>只想说，<code>Chrome</code>真的很强大。<br>平时能用到<code>Chrome Devtools</code>的功能也是少之又少。<br>仅仅一个打断点就能搞出这么多花来，很期待接下来能够在文档中发现什么。</p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/08/10/chrome设置断点的各种姿势/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/08/10/chrome设置断点的各种姿势/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/08/17/记一个node实现的图形验证码从0到1/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/07/30/redux中间件/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            video与audio在移动端的表现 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",html5">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="video与audio在移动端的表现 | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="html5"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#video"><span class="post-toc-number">1.</span> <span class="post-toc-text">video</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用属性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">常用属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#controls"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">controls</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#autoplay"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">autoplay</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#移动端实际样式"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">移动端实际样式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#关于获取视频封面"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">关于获取视频封面</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#全屏播放"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">全屏播放</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">常用方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#play"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">play</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#audio"><span class="post-toc-number">2.</span> <span class="post-toc-text">audio</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本使用"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">基本使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用属性-1"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">常用属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#autoplay-自动播放"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">autoplay 自动播放</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#src"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">src</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#创建实例"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">创建实例</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三方视频插件"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">第三方视频插件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#video-js"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">video.js</span></a></li></ol></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="/img/mxx/20171030_video/video_banner.png">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          video与audio在移动端的表现
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars3.githubusercontent.com/u/20737114?v=4" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/mengxxSELF">mengxxSELF</a>
+    </strong>
+    <span>10月 30, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC0ElEQVR42u3aS27DMAwFwNz/0u22m6SPpNM61GgVwI6tUYCy/Dy+jlwPbGxsbGxsbGxs7FuyH/H6ef+zJ7zjmfPnY2NjY5/A/uVP/5MtPnvB66vRFoNDyfeMjY2NfQ47CTBzTH5P9eh/OSxsbGxs7CCE5IlHb2FjY2NjvyOAJYnBJDjdNG5jY2Nj35JdKNDEaUZecqqGyT+tpWFjY2Pfnj1JA/7r87/1t7GxsbFvxm4OMsab6DV3k3Zvec/Y2NjYS9nVpGICmxxofjSFuI2NjY29jv16o9UCfW/cJwEnP1UhgGFjY2MvZV9VWkqaBDms92RsbGzs3exqktBLFfImbt5mzlvI2NjY2Kex54lBvrk8BcpTmmYAw8bGxv5Ydi8Z6CUhyQH1Uo5oHBMbGxt7KTtv7hZCRbENcFV4K7QHsLGxsRexq4M1SbDpFYnyoJX8VNjY2NjYSVEpH51JylL5iGd+oNjY2Ninsa9qCfTaD1eVrrCxsbFPY/fKNHkSkgS5PFxNylXY2NjYu9nzF+eFnncM6ESBEBsbG3spOx+LqbYBqiWqPLFptiWwsbGxV7N7m+sd1qSpUE0/sLGxsU9mV//prw7QJAWsvJEQJSrY2NjYS9l5cacKnoex6j2jrgg2Njb2x7Jfh41eEMpD46Tcnz8HGxsb+zR2oXU6aBL0UpH8mLCxsbHPZDeHGovlpEm5f/J2bGxs7N3saki4NlHJSdWr2NjY2Gey84J+NTHoHVbeTh6N7GBjY2N/LLu68jLQZNSmGkrL7QFsbGzsRexqYJiMVPZWcnDNVAQbGxt7ETtv0E4KSclGq4lQIbBhY2NjH8CeB4/ku/mQ5STUYWNjY2P3tpIUepKrVwU/bGxsbOxqCT4v+udP6B0oNjY29pnsnJEUmCYjO/l7C0EOGxsbezW713CtJgmT71YPCBsbG/sc9jkLGxsbGxsbGxsb+zbrG2+IucwkCGebAAAAAElFTkSuQmCC">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/html5/">html5</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="video"><a href="#video" class="headerlink" title="video"></a>video</h2><p>video是HTML5提供的新标签 用于替代flash进行视频展示 然而video在移动端的表现情况却不如人意</p>
+<a id="more"></a>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span> <span class="token attr-name">poster</span><span class="token attr-value"><span class="token punctuation">=</span>{`${source}?vframe/jpg/offset/0`}</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{source}</span>  <span class="token attr-name">controls</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>controls<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+</code></pre>
+<p>或者是</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span> <span class="token attr-name">poster</span><span class="token attr-value"><span class="token punctuation">=</span>{`${source}?vframe/jpg/offset/0`}</span> <span class="token attr-name">controls</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>controls<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{source}</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>video/mp4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>浏览器支持情况</p>
+<p><img src="/img/mxx/20171030_video/use.png" alt="use"></p>
+<p>在PC端表现还是不错的</p>
+<h3 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>设置为自动播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>展示视频播放的控制条</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>视频预加载 如果使用 “autoplay”，则忽略该属性</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>开启循环播放</td>
+</tr>
+<tr>
+<td>src</td>
+<td>string</td>
+<td>视频源</td>
+</tr>
+<tr>
+<td>muted</td>
+<td>Boolean</td>
+<td>静音</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>string</td>
+<td>视频封面</td>
+</tr>
+</tbody>
+</table>
+<h4 id="controls"><a href="#controls" class="headerlink" title="controls"></a>controls</h4><p>控制条包括：播放 暂停 定位 音量 全屏切换 字幕（如果可用）音轨（如果可用）</p>
+<p>在iOS和Android中 控制条表现不同</p>
+<p>左侧是Android中视频控制条的表现形式 右侧是iOS中视频控制条的表现形式</p>
+<p><img src="/img/mxx/20171030_video/ios.png" alt="control"></p>
+<h4 id="autoplay"><a href="#autoplay" class="headerlink" title="autoplay"></a>autoplay</h4><p>此属性表示设置为默认播放 但实际上 这个效果在移动端体验非常不友好 并不能实现视频自动播放的功能</p>
+<h3 id="移动端实际样式"><a href="#移动端实际样式" class="headerlink" title="移动端实际样式"></a>移动端实际样式</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{source}</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>video/mp4<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>左侧是安卓系统表现 右侧是iOS系统表现</p>
+<p><img src="/img/mxx/20171030_video/control.png" alt="actually"></p>
+<p>可以看到 移动端视频展现没有一个合适的封面图 实际应该展示的是视频的第一帧作为默认封面图</p>
+<p>然后我们添加一个 poster 属性 用于展现封面</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span> <span class="token attr-name">poster</span><span class="token attr-value"><span class="token punctuation">=</span>{poster}</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span>{source}</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>video/mp4<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>就可以正确展示视频封面了</p>
+<h4 id="关于获取视频封面"><a href="#关于获取视频封面" class="headerlink" title="关于获取视频封面"></a>关于获取视频封面</h4><p>项目中的视频是存储在七牛中的 七牛提供了一个图片地址 是截取视频第一帧</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> poster <span class="token operator">=</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>source<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">?vframe/jpg/offset/0`</span></span>
+</code></pre>
+<p>如果你无法拿到视频中的某一张图片 就需要另外处理了</p>
+<ul>
+<li>视频设置自动播放 则默认使用视频第一帧作为封面图</li>
+</ul>
+<p>如果视频有设置 autoplay 属性 则可以展现第一帧作为封面 但是移动端体验不好</p>
+<ul>
+<li>canvas截取视频封面</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">let</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> video <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`video`</span></span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span>
+  canvas<span class="token punctuation">.</span>width <span class="token operator">=</span> video<span class="token punctuation">.</span>offsetWidth
+  canvas<span class="token punctuation">.</span>height <span class="token operator">=</span> video<span class="token punctuation">.</span>offsetHeight
+  ctx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>video<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> img <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"img"</span><span class="token punctuation">)</span>
+  img<span class="token punctuation">.</span>src <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token string">"image/png"</span><span class="token punctuation">)</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+</code></pre>
+<p>这样是利用canvas截取视频 得到一个Img图片</p>
+<p><strong> 视频跨域 则无法获取到图片 </strong></p>
+<p>视频截取中 网页报错</p>
+<p><img src="/img/mxx/20171030_video/crossDomain.png" alt="video"></p>
+<p>canvas中的图像进行操作时有跨域限制（canvas安全机制）,如在某一个域名项目中的canvas中加载非本域中的图像，在进行toDataURL或getImageData进行操作时抛出异常</p>
+<p>所以如果你的项目中视频源不涉及到跨域问题 可以直接使用这种方式</p>
+<p>如果视频不同源 则直接将canvas元素展现出来 配合CSS充当封面</p>
+<pre class=" language-javascript"><code class="language-javascript">  <span class="token keyword">let</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> video <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`video`</span></span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span>
+  canvas<span class="token punctuation">.</span>width <span class="token operator">=</span> video<span class="token punctuation">.</span>offsetWidth
+  canvas<span class="token punctuation">.</span>height <span class="token operator">=</span> video<span class="token punctuation">.</span>offsetHeight
+  ctx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>video<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="全屏播放"><a href="#全屏播放" class="headerlink" title="全屏播放"></a>全屏播放</h4><p>iOS系统中 默认是全屏播放 当你点击视频 iOS会自动全屏</p>
+<p>Android 系统就是在展现的位置播放 当点击全屏按钮才会显示全屏</p>
+<ul>
+<li>禁止iOS全屏播放</li>
+</ul>
+<p>如果不想在iOS展示全屏效果 那么可以添加属性 playsinline 来禁止iOS的默认全屏</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>video ref<span class="token operator">=</span><span class="token string">'videoEl'</span> src<span class="token operator">=</span><span class="token punctuation">{</span>source<span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token operator">...</span>videoProps<span class="token punctuation">}</span> playsinline <span class="token operator">/</span><span class="token operator">></span>
+</code></pre>
+<p>这样视频会在指定位置处播放 [和Android表现相同]</p>
+<ul>
+<li>Android 无法实现自动全屏 需要再处理</li>
+</ul>
+<p>如果有设置 control 属性 则可以通过点击控制条中的全屏按钮实现全屏播放</p>
+<p>还可以通过一个虚假的蒙层实现 全屏播放 当点击按钮的是 传入视频源 然后强制蒙层中的video元素100% 播放</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>play</td>
+<td>播放视频</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>暂停视频</td>
+</tr>
+</tbody>
+</table>
+<h4 id="play"><a href="#play" class="headerlink" title="play"></a>play</h4><pre class=" language-javascript"><code class="language-javascript">componentDidMount <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 尝试播放视频</span>
+  <span class="token keyword">let</span> target <span class="token operator">=</span> <span class="token function">findDOMNode</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>refs<span class="token punctuation">.</span>videoEl<span class="token punctuation">)</span>
+  target<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然而 并没有什么用  PC端一切正常 但是在移动端是无法实现的</p>
+<p>移动端的视频播放 必须通过用户执行点击动作 否则是无法实现播放的</p>
+<pre class=" language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchstart'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> video <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'video'</span><span class="token punctuation">)</span>
+  video<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>项目开始的时候提出一个需求 类似于微博客户端效果 当视频滑动到用户可视区 即可自动播放此视频 当此视频滑离可视区 则视频停止播放</p>
+<pre class=" language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 自动播放过一次之后 就禁止第二次自动播放了</span>
+  <span class="token keyword">let</span> <span class="token punctuation">{</span>played<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>played<span class="token punctuation">)</span> <span class="token keyword">return</span>
+  <span class="token keyword">let</span> scrollTop <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollTop <span class="token operator">||</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollTop
+  <span class="token comment" spellcheck="true">// 滑动距离 + 屏幕距离  > 盒子距离顶部 + 200</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">+</span> screenH <span class="token operator">></span> boxTop <span class="token operator">+</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>refs<span class="token punctuation">.</span>videoEl<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>played<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>可以看到在PC端 可以实现这种效果  然而 由于移动端 <strong> 必须通过用户点击屏幕的动作来触发播放事件 </strong>  所以无法实现这个效果  </p>
+<p>添加一个事件: 视频滑入可视区的时候 监听用户的 touch 事件 用户触发视频的播放</p>
+<pre class=" language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> <span class="token punctuation">{</span>played<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>played<span class="token punctuation">)</span> <span class="token keyword">return</span>
+  <span class="token keyword">let</span> scrollTop <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollTop <span class="token operator">||</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollTop
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">+</span> screenH <span class="token operator">></span> boxTop <span class="token operator">+</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchstart'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>refs<span class="token punctuation">.</span>videoEl<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>played<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>功能上是可以实现的 但是这种方式非常不友好 体验的时候就能感觉到 当用户把视频滑动到可视区域 并不一定发生touch事件</p>
+<h2 id="audio"><a href="#audio" class="headerlink" title="audio"></a>audio</h2><p>audio 是HTML5提供的新标签 用于进行音频文件的播放</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> audioProps <span class="token operator">=</span> <span class="token punctuation">{</span>
+ src<span class="token punctuation">:</span> <span class="token string">'../music.mp3'</span><span class="token punctuation">,</span>
+ loop<span class="token punctuation">:</span> <span class="token string">'loop'</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span>audio <span class="token punctuation">{</span><span class="token operator">...</span>audioProps<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>
+</code></pre>
+<h3 id="常用属性-1"><a href="#常用属性-1" class="headerlink" title="常用属性"></a>常用属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>设置为自动播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>展示音频播放的控制条</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>音频预加载 如果使用 “autoplay”，则忽略该属性</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>开启循环播放</td>
+</tr>
+<tr>
+<td>src</td>
+<td>string</td>
+<td>音频源</td>
+</tr>
+</tbody>
+</table>
+<h4 id="autoplay-自动播放"><a href="#autoplay-自动播放" class="headerlink" title="autoplay 自动播放"></a>autoplay 自动播放</h4><p>音频文件在ios系统中无法实现自动播放的这个效果</p>
+<blockquote>
+<p>User Control of Downloads Over Cellular Networks<br>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=”play()” event does not.</p>
+</blockquote>
+<p>简而言之 ios认为自动播放音频视频是不友好的行为 不想用户浪费过多的流量，禁止了自动播放的功能</p>
+<p>所以即使你在标签中添加了 autoplay属性 在移动端也不会触发视频或者音频的播放</p>
+<ul>
+<li>解决方案1</li>
+</ul>
+<p>如果就是想要用户开启播放 可以为页面绑定一个 touchstart 点击事件  这样在页面点击的时候 触发此音频播放</p>
+<pre class=" language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'touchstart'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span>
+  audio<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li>解决方案2</li>
+</ul>
+<p>虽然在浏览器中有此限制 但是在微信中却可以做到自动播放</p>
+<p>Android 中可以使用 [ios 无效]</p>
+<pre class=" language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span>
+  audio<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>iOS 可以使用 [Android 也可以]</p>
+<pre class=" language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"WeixinJSBridgeReady"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span>
+  audio<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="src"><a href="#src" class="headerlink" title="src"></a>src</h4><p>测试的时候使用了一首来自5sing的歌曲链接</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> src <span class="token operator">=</span> <span class="token string">'http://data.5sing.kgimg.com/G106/M00/0A/0F/SpQEAFljNBqATRL-ADks3ezSCI8032.m4a'</span>
+</code></pre>
+<p>然后发现无法播放  是由于audio不支持此格式的音频文件</p>
+<p>audio只支持三种格式的音频文件</p>
+<p><img src="/img/mxx/20171030_video/mime.png" alt="video"></p>
+<h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><p>其实还可以通过new 来创建一个 audio 实例  就类似于 Image 来创建 img 一样</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> src <span class="token operator">=</span> <span class="token string">'https://os4ty6tab.qnssl.com/web/static/AllProjects/music-0c0d070d.mp3'</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>audio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Audio</span><span class="token punctuation">(</span>src<span class="token punctuation">)</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>audio<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'loop'</span><span class="token punctuation">,</span> <span class="token string">'loop'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>这样就不必讲元素放入页面中也可以播放音乐</p>
+<h3 id="第三方视频插件"><a href="#第三方视频插件" class="headerlink" title="第三方视频插件"></a>第三方视频插件</h3><p>其实原生的video标签有的时候无法满足UI需求 比如一般需要另行处理播放或者全屏按钮</p>
+<p><img src="/img/mxx/20171030_video/video4.png" alt="video"></p>
+<p>可以看到页面元素中 下面控制条部分并没有被解析为标签元素展示 整个视频源和控制条都在一个video元素中展示 所以无法处理这些按钮 比如调整位置或者样式</p>
+<h4 id="video-js"><a href="#video-js" class="headerlink" title="video.js"></a>video.js</h4><blockquote>
+<p>Video.js 是一个通用的在网页上嵌入视频播放器的 JS 库，Video.js 自动检测浏览器对 HTML5 的支持情况，如果不支持 HTML5 则自动使用 Flash 播放器</p>
+</blockquote>
+<p><a href="http://videojs.com/" target="_blank" rel="noopener">官网</a></p>
+<p><a href="https://www.npmjs.com/package/video.js" target="_blank" rel="noopener">npm</a></p>
+<p><a href="https://github.com/videojs/video.js" target="_blank" rel="noopener">Github</a></p>
+<ul>
+<li>使用</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">videojs</span><span class="token punctuation">(</span>videoID<span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// console.log(this)</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>可以实现视频自动播放功能</p>
+<p>传入的参数是  </p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>videoID</td>
+<td>string</td>
+<td>video标签元素的id</td>
+</tr>
+<tr>
+<td>option</td>
+<td>{}</td>
+<td>标签参数</td>
+</tr>
+<tr>
+<td>cb</td>
+<td>function</td>
+<td>回调函数  其中的this表示为当前播放源</td>
+</tr>
+</tbody>
+</table>
+<p>去看了源码 有这么一段</p>
+<p><img src="/img/mxx/20171030_video/code.png" alt="video"></p>
+<p>简化版</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">videojs</span><span class="token punctuation">(</span>id<span class="token punctuation">,</span> options<span class="token punctuation">,</span> ready<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> tag<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> string<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tag <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`#</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    tag <span class="token operator">=</span> id
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span><span class="token operator">...</span>
+<span class="token punctuation">}</span>  
+</code></pre>
+<p>所以第一个参数那里 不只是可以传递 id  也可以直接传递 DOM节点 比如</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">videojs</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'video'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>查看页面元素 可以看到 每一个部分都被解析为元素节点了</p>
+<p><img src="/img/mxx/20171030_video/video5.png" alt="video"> 这样就可以调整按钮样式了</p>
+<p>** video.js 提供了在React中的使用方式  </p>
+<p><a href="http://docs.videojs.com/tutorial-react.html" target="_blank" rel="noopener">react-video</a></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> videojs <span class="token keyword">from</span> <span class="token string">'video.js'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">VideoPlayer</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>player <span class="token operator">=</span> <span class="token function">videojs</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>videoNode<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">onPlayerReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onPlayerReady'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>player<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>player<span class="token punctuation">.</span><span class="token function">dispose</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>div data<span class="token operator">-</span>vjs<span class="token operator">-</span>player<span class="token operator">></span>
+        <span class="token operator">&lt;</span>video ref<span class="token operator">=</span><span class="token punctuation">{</span> node <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">this</span><span class="token punctuation">.</span>videoNode <span class="token operator">=</span> node <span class="token punctuation">}</span> className<span class="token operator">=</span><span class="token string">"video-js"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>video<span class="token operator">></span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>有一些坑请看程总文章 <a href="https://github.com/GodEngine/videojs_hls" target="_blank" rel="noopener">video.js文档笔记(videojs)</a></p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/10/30/video与audio在移动端的表现/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/10/30/video与audio在移动端的表现/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/12/13/touch-rotate-with-one-finger/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/10/17/浅谈script标签中的async和defer/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

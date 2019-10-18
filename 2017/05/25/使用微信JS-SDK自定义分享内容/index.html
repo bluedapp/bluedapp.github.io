@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            调用微信JS-SDK自定义分享内容 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",JavaScript">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="调用微信JS-SDK自定义分享内容 | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="JavaScript"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#调用微信SDK自定义分享内容"><span class="post-toc-number">1.</span> <span class="post-toc-text">调用微信SDK自定义分享内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-本地开发测试"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.本地开发测试</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-1使用测试账号获取相关参数"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1.1使用测试账号获取相关参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-2-获取接口签名"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">1.2 获取接口签名</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-3-设置反向代理"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">1.3 设置反向代理</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-4-开始写代码"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">1.4 开始写代码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-5-使用微信web开发者工具调试"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">1.5 使用微信web开发者工具调试</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-线上开发"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.线上开发</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          调用微信JS-SDK自定义分享内容
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars1.githubusercontent.com/u/16009933?v=3" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/jiandandkl">dujun</a>
+    </strong>
+    <span>5月 25, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACy0lEQVR42u3bQU7DQAwF0N7/0rBFQk387RSSmZdVpdDUz5UwtofX15bXCxsbGxsbGxsbG/uW7Ff5+vnzv18f3333tHfvPb6bxoyNjY29A/vkV/8h9Xcok0S8e0IlhmMXNjY29g7sSSjHH18pYB9PHzY2NjZ2K6z6E+oJxcbGxsa+qoDVS1evtUi/BmxsbGzs+oAmbTzm1HnM2NjY2Guz54vev399i/02NjY29g3Y6dU7iFO/WxlaNSPHxsbGXpR9/JHHZSxd3Naf8In1AzY2NvY+7B6gR50ftQzGVdjY2NhLs9PyULk7aSd6h4ROEoSNjY29JbtXqOoD/UlhSxfA2NjY2Kuy641Hr5DUk1hB1lPWXPRiY2NjP5Ad/0EfpmCSyvS6bNGLjY2N/Sh2r/DUhz5p85C+q/61YWNjY6/K7h3ESZuZeivyueOY2NjY2Puw03KSFpj5gvkjQyVsbGzsh7PTQXy9+E3WA+lK4ESEjY2NvSg7DaLeHkyWDaOjOdjY2NjYraDnrcvJcH+wYMbGxsbegZ2Wk3kjMVkhNGPGxsbGXpqdNhuVYpMukuvPrC82sLGxsXdgp8fZKwP6FDwpXUHDg42Njb0ou86YLGvnQdfLWPO/B7CxsbEfy77qCE493N7qN31y88wpNjY29gPZk3Vsb5FQP7hfuY7jxMbGxt6HnR5/T4+5pyUzTfTopBI2Njb2w9m9RWwvTZOylI6Z4g4MGxsb+7HsectxVeKuSlNQt7GxsbEXZdeTkgY6Gu4XnnBS2LCxsbEXZadBp0P5yYJ2XjKxsbGx92Ffe+Cm3nik696LCxg2Njb2cuxe0ZoctUkLXjqWwsbGxsbu8Xpl6arEYWNjY2On7HTFOx/6N0sgNjY29gbsyqjoOBH1RmK+PP7T9QA2Njb27dn/1WDUV7+Vz41bEWxsbOwl2Ptc2NjY2NjY2NjY2Le5vgGugSCCqTKclQAAAABJRU5ErkJggg==">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <p>调用微信SDK自定义分享内容</p>
+<h2 id="调用微信SDK自定义分享内容"><a href="#调用微信SDK自定义分享内容" class="headerlink" title="调用微信SDK自定义分享内容"></a>调用微信SDK自定义分享内容</h2><h3 id="1-本地开发测试"><a href="#1-本地开发测试" class="headerlink" title="1.本地开发测试"></a>1.本地开发测试</h3><h4 id="1-1使用测试账号获取相关参数"><a href="#1-1使用测试账号获取相关参数" class="headerlink" title="1.1使用测试账号获取相关参数"></a>1.1使用测试账号获取相关参数</h4><ul>
+<li><p>使用个人微信登录公众平台接口测试号申请: <a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login" target="_blank" rel="noopener">测试号申请</a></p>
+</li>
+<li><p>登录后拿到appId和appsecret<br><img src="/img/dujun/appID.jpeg" alt="appID" width="50%"></p>
+</li>
+<li><p>配置安全域名(以公司blued举栗子)<br><img src="/img/dujun/domain.jpeg" alt="domain" width="50%"><br><font color="#F08080">(注意:域名不能配置IP地址)</font></p>
+<h4 id="1-2-获取接口签名"><a href="#1-2-获取接口签名" class="headerlink" title="1.2 获取接口签名"></a>1.2 获取接口签名</h4></li>
+<li>用appID和appsecret获取token<pre class=" language-javascript"><code class="language-javascript">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>api<span class="token punctuation">.</span>weixin<span class="token punctuation">.</span>qq<span class="token punctuation">.</span>com<span class="token operator">/</span>cgi<span class="token operator">-</span>bin<span class="token operator">/</span>token<span class="token operator">?</span>grant_type<span class="token operator">=</span>client_credential<span class="token operator">&amp;</span>appId<span class="token operator">=</span><span class="token punctuation">{</span>app_id<span class="token punctuation">}</span><span class="token operator">&amp;</span>secret<span class="token operator">=</span><span class="token punctuation">{</span>secret<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>用token获取jsapi_ticket<pre class=" language-javascript"><code class="language-javascript">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>api<span class="token punctuation">.</span>weixin<span class="token punctuation">.</span>qq<span class="token punctuation">.</span>com<span class="token operator">/</span>cgi<span class="token operator">-</span>bin<span class="token operator">/</span>ticket<span class="token operator">/</span>getticket<span class="token operator">?</span>type<span class="token operator">=</span>jsapi<span class="token operator">&amp;</span>access_token<span class="token operator">=</span><span class="token punctuation">{</span>token<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>生成signature<pre class=" language-javascript"><code class="language-javascript">https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>mp<span class="token punctuation">.</span>weixin<span class="token punctuation">.</span>qq<span class="token punctuation">.</span>com<span class="token operator">/</span>debug<span class="token operator">/</span>cgi<span class="token operator">-</span>bin<span class="token operator">/</span>sandbox<span class="token operator">?</span>t<span class="token operator">=</span>jsapisign
+</code></pre>
+微信 JS 接口签名校验工具<br><img src="/img/dujun/signature.jpeg" alt="signature" width="50%"><br>noncestr: 随机字符串，由开发者随机生成<br>timestamp: 由开发者生成的当前时间戳 <code>parseInt(new Date().getTime() / 1000)</code><h4 id="1-3-设置反向代理"><a href="#1-3-设置反向代理" class="headerlink" title="1.3 设置反向代理"></a>1.3 设置反向代理</h4></li>
+<li>更改host，在最下方加入: 127.0.0.1 app.blued.cn<pre class=" language-javascript"><code class="language-javascript">sudo vi <span class="token operator">/</span>etc<span class="token operator">/</span>hosts
+</code></pre>
+</li>
+<li><p>nginx反向代理<br>安装nginx: <code>brew install nginx</code><br>查看安装位置: <code>brew list nginx</code><br>更改nginx配置: <code>vi /usr/local/etc/nginx/nginx.conf</code> 在最后一个大括号前添加 <code>include ./conf.d/*.conf;</code><br>创建并打开nginx/conf.d,然后创建并编辑: <code>vi app.blued.cn-localhost.conf</code></p>
+<p>添加:</p>
+<pre class=" language-javascript"><code class="language-javascript">server <span class="token punctuation">{</span>
+  listen  <span class="token number">80</span><span class="token punctuation">;</span>
+  server_name  app<span class="token punctuation">.</span>blued<span class="token punctuation">.</span>cn<span class="token punctuation">;</span>
+
+location <span class="token operator">/</span> <span class="token punctuation">{</span>
+  proxy_pass http<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">127.0</span><span class="token punctuation">.</span><span class="token number">0.1</span><span class="token punctuation">:</span><span class="token number">8000</span><span class="token operator">/</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在conf.d下启动nginx: <code>sudo nginx</code><br>(可以使用<code>ping app.blued.cn</code>测试是否可用)</p>
+<ul>
+<li>nginx常用命令:</li>
+</ul>
+<p>启动: <code>sudo nginx</code><br>停止: <code>sudo nginx -s stop</code><br>重启: <code>sudo nginx -s reload</code></p>
+</li>
+</ul>
+<h4 id="1-4-开始写代码"><a href="#1-4-开始写代码" class="headerlink" title="1.4 开始写代码"></a>1.4 开始写代码</h4><p>页面中引入微信js文件</p>
+<pre><code>&lt;script src=&quot;//res.wx.qq.com/open/js/jweixin-1.2.0.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>将1.2步获得的config填入wx.config</p>
+<pre class=" language-javascript"><code class="language-javascript">wx<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   debug<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+   appId<span class="token punctuation">:</span> <span class="token string">'XXX'</span><span class="token punctuation">,</span>
+   timestamp<span class="token punctuation">:</span> <span class="token string">'j1495707198'</span><span class="token punctuation">,</span>
+   nonceStr<span class="token punctuation">:</span><span class="token string">'efbm2f95lcx7c3'</span><span class="token punctuation">,</span>
+   signature<span class="token punctuation">:</span> <span class="token string">'XXX'</span><span class="token punctuation">,</span>
+   jsApiList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'onMenuShareAppMessage'</span><span class="token punctuation">,</span> <span class="token string">'onMenuShareTimeline'</span><span class="token punctuation">,</span> <span class="token string">'onMenuShareQQ'</span><span class="token punctuation">,</span> <span class="token string">'onMenuShareQZone'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 必填，需要使用的JS接口列表，所有JS接口列表见官方文档附录2</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p>调用微信相关API</p>
+<pre class=" language-javascript"><code class="language-javascript">wx<span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   wx<span class="token punctuation">.</span><span class="token function">onMenuShareAppMessage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   title<span class="token punctuation">:</span> <span class="token string">'title'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享标题</span>
+   desc<span class="token punctuation">:</span> <span class="token string">'content'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享描述</span>
+   link<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span>
+   imgUrl<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享图标</span>
+   type<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享类型,music、video或link，不填默认为link</span>
+   dataUrl<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 如果type是music或video，则要提供数据链接，默认为空</span>
+   success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 用户确认分享后执行的回调函数</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   cancel<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 用户取消分享后执行的回调函数</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li><p>坑</p>
+<ul>
+<li>严格按照微信官方文档的书写方式,驼峰与下划线并存</li>
+<li>imgUrl地址为绝对路径</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-5-使用微信web开发者工具调试"><a href="#1-5-使用微信web开发者工具调试" class="headerlink" title="1.5 使用微信web开发者工具调试"></a>1.5 使用微信web开发者工具调试</h4><p>现在微信的开发工具已经可以开发网页了，并且集成了Chrome的DevTool进行调试。<br>console里出现<code>errMsg: &quot;config:ok&quot;</code>就大功告成啦。</p>
+<hr>
+<h3 id="2-线上开发"><a href="#2-线上开发" class="headerlink" title="2.线上开发"></a>2.线上开发</h3><ul>
+<li>出于安全考虑，必须在服务器端实现签名的逻辑，getWxSignature.js代码如下:</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> req <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'bd-require'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> urllib <span class="token operator">=</span> <span class="token function">req</span><span class="token punctuation">(</span><span class="token string">'./node_modules/urllib'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> JsSHA <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'jssha'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> appInfo <span class="token operator">=</span> <span class="token punctuation">{</span>
+  appID<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+  appsecret<span class="token punctuation">:</span> <span class="token string">''</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 接口每日调用有限制,需做缓存</span>
+<span class="token keyword">const</span> cacheInfo <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 时间戳</span>
+<span class="token keyword">const</span> timeStamp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">parseInt</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 获取签名</span>
+<span class="token keyword">const</span> sign <span class="token operator">=</span> <span class="token punctuation">(</span>ticket<span class="token punctuation">,</span> noncestr<span class="token punctuation">,</span> timestamp<span class="token punctuation">,</span> url<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token template-string"><span class="token string">`jsapi_ticket=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>ticket<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;noncestr=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>noncestr<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;timestamp=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>timestamp<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;url=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>url<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+  <span class="token keyword">const</span> shaObj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JsSHA</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token string">'TEXT'</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">return</span> shaObj<span class="token punctuation">.</span><span class="token function">getHash</span><span class="token punctuation">(</span><span class="token string">'SHA-1'</span><span class="token punctuation">,</span> <span class="token string">'HEX'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 获取jsapi_ticket</span>
+<span class="token keyword">function</span> <span class="token operator">*</span> getTicket <span class="token punctuation">(</span>accessToken<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token keyword">yield</span> urllib<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>accessToken<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;type=jsapi`</span></span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    dataType<span class="token punctuation">:</span> <span class="token string">'json'</span><span class="token punctuation">,</span>
+    timeout<span class="token punctuation">:</span> <span class="token number">2000</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">Number</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>status<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> result<span class="token punctuation">.</span>data<span class="token punctuation">.</span>ticket
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 获取token</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token operator">*</span> <span class="token punctuation">(</span>url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> ticket
+  <span class="token comment" spellcheck="true">// 如果第一次启动，或者该ticket已经存在了超过7200秒，则重新获取ticket</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>cacheInfo<span class="token punctuation">.</span>startTime <span class="token operator">||</span> <span class="token operator">!</span>cacheInfo<span class="token punctuation">.</span>ticket <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token function">timeStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">7200</span><span class="token punctuation">)</span> <span class="token operator">></span> cacheInfo<span class="token punctuation">.</span>startTime<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'通过wxAPI获取token'</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> url<span class="token punctuation">)</span>
+    <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token keyword">yield</span> urllib<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appInfo<span class="token punctuation">.</span>appID<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&amp;secret=</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appInfo<span class="token punctuation">.</span>appsecret<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      dataType<span class="token punctuation">:</span> <span class="token string">'json'</span><span class="token punctuation">,</span>
+      timeout<span class="token punctuation">:</span> <span class="token number">2000</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">Number</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>status<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> ticketInfo <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token function">getTicket</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>data<span class="token punctuation">.</span>access_token<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ticketInfo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span>
+    <span class="token punctuation">}</span>
+
+    cacheInfo<span class="token punctuation">.</span>startTime <span class="token operator">=</span> <span class="token function">timeStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    ticket <span class="token operator">=</span> cacheInfo<span class="token punctuation">.</span>ticket <span class="token operator">=</span> ticketInfo
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    ticket <span class="token operator">=</span> cacheInfo<span class="token punctuation">.</span>ticket
+  <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 随机字符串</span>
+  <span class="token keyword">let</span> nonceStr <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">36</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> timestamp <span class="token operator">=</span> <span class="token function">timeStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">let</span> signature <span class="token operator">=</span> <span class="token function">sign</span><span class="token punctuation">(</span>ticket<span class="token punctuation">,</span> nonceStr<span class="token punctuation">,</span> timestamp<span class="token punctuation">,</span> url<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> ticket<span class="token punctuation">,</span> nonceStr<span class="token punctuation">,</span> timestamp<span class="token punctuation">,</span> url<span class="token punctuation">,</span> signature<span class="token punctuation">,</span> appId<span class="token punctuation">:</span> appInfo<span class="token punctuation">.</span>appID <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>服务端routes.js (服务端用的是KOA)</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> getWxSignature <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'getWxSignature.js'</span><span class="token punctuation">)</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+router<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token operator">*</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 将http修改为https &amp; 删除#后的所有部分</span>
+    <span class="token keyword">let</span> url <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>header<span class="token punctuation">.</span>referer <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>href<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/^http:/</span><span class="token punctuation">,</span> <span class="token string">'https:'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/#.*$/</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token keyword">yield</span> <span class="token function">getWxSignature</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>前端代码 (react + yarn)<br>前端发送请求后拿到相关参数，放入config</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">wx<span class="token punctuation">.</span><span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   debug<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+   appId<span class="token punctuation">,</span>
+   timestamp<span class="token punctuation">,</span>
+   nonceStr<span class="token punctuation">,</span>
+   signature<span class="token punctuation">,</span>
+   jsApiList<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'onMenuShareAppMessage'</span><span class="token punctuation">,</span> <span class="token string">'onMenuShareTimeline'</span><span class="token punctuation">,</span> <span class="token string">'onMenuShareQQ'</span><span class="token punctuation">,</span> <span class="token string">'onMenuShareQZone'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<ul>
+<li>调用微信相关API</li>
+</ul>
+<pre class=" language-javascript"><code class="language-javascript">wx<span class="token punctuation">.</span><span class="token function">ready</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   wx<span class="token punctuation">.</span><span class="token function">onMenuShareAppMessage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+   title<span class="token punctuation">:</span> <span class="token string">'title'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享标题</span>
+   desc<span class="token punctuation">:</span> <span class="token string">'content'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享描述</span>
+   link<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致</span>
+   imgUrl<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享图标</span>
+   type<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 分享类型,music、video或link，不填默认为link</span>
+   dataUrl<span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 如果type是music或video，则要提供数据链接，默认为空</span>
+   success<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 用户确认分享后执行的回调函数</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   cancel<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 用户取消分享后执行的回调函数</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/05/25/使用微信JS-SDK自定义分享内容/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/05/25/使用微信JS-SDK自定义分享内容/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/06/01/单元测试/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/04/10/hello-world/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

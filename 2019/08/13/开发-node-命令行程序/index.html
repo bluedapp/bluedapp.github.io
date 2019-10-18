@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            开发 node 命令行程序 | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="开发 node 命令行程序 | BluedWeb">
+    <meta property="og:description" content>
+    
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#演示"><span class="post-toc-number">1.</span> <span class="post-toc-text">演示</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开始"><span class="post-toc-number">2.</span> <span class="post-toc-text">开始</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x00-创建项目"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">0x00 创建项目</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x01-配置命令名称"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">0x01 配置命令名称</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x02-其他配置"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">0x02 其他配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x03-开始编写脚本"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">0x03 开始编写脚本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x04-本地测试"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">0x04 本地测试</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x05-完善程序"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">0x05 完善程序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x06-添加功能"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">0x06 添加功能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#0x07-补全其他内容"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">0x07 补全其他内容</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ox08-其他"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">ox08 其他</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          开发 node 命令行程序
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars2.githubusercontent.com/u/4973519?v=4" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/ryli">ryli</a>
+    </strong>
+    <span>8月 13, 2019</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC3ElEQVR42u3aQVJjMQwE0Nz/0sx2qqiEbgmKYD+vUkP4308seiz58XHlemBjY2NjY2NjY2O/JfsRr/+///l3nz3t87s+f372L08B5Z6xsbGxb2Anr0m2m5Qg32i+h9ffx8bGxr6HnYRWi2/jqn17sWdsbGxs7PL4kXxO2EmYYWNjY2PPAiwHvH5C8tPZgQcbGxv7NnbeoGmjpRjHBlH3C700bGxs7Ldnbwa9v/X5l+fb2NjY2G/DbtfrplJ+nNg0koY7x8bGxj6UvblMmQfhrHz5gCH6M2BjY2Mfym5b9rMWf9tC2iCfFhobGxv7aHZLyps731uCdofY2NjY97A3rZwkumbR+Pp36xEyNjY29qHsdtOz8Pi2xtDoIiY2Njb22ezkv/vttvYD4MdofcMJDBsbG/vPsn/uGNA+YTYejgISGxsb+1B2cj19Nl6dDQzyoreFw8bGxr6NPXtx+4RNyymPPWxsbOwb2HmctMeMpBBt1A2jERsbG/todtsYSo4BeVGig0Tc0sLGxsa+mf36ZZtjQHFgiAua/xQbGxv7bHY76G23nofNbJycXDbCxsbGPpudN2uKqFgcNpKjSFtcbGxs7LPZm4bO/nLPT0RXndvY2NjYx7FnD52VL4+rtoh1gGFjY2P/WXZCza9Uti3+9sl5CwwbGxv7HnYSDJtBbHtFMinQLMawsbGxb2Mn0dXGXhtRs+BcBRg2Njb2H2S3odLG0gz2Eax6RI2NjY19KDvZUNs22o8QNuvpG7GxsbEvY+cj3tfNnTyWkiubbZMLGxsb+wb2rBG/v0w5u+i5eiM2Njb20exNtCRF3AyV81bXFwpsbGzsC9ib+IkuzaxDKy8rNjY2NnbeHmoHw0nUtd9cHUWwsbGxr2TPmlD5ESW/0Dkc9GJjY2Mfym6Hu23gbRpJmxEyNjY29g3szaA3j5n2Ce0x5ouAxMbGxj6Ufc/CxsbGxsbGxsbGfpv1D2Zd2Lt5sJtjAAAAAElFTkSuQmCC">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <blockquote>
+<p>简单开发一个命令行程序</p>
+</blockquote>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>介绍两个 node 写的程序，可以通过 <code>npm i -g saikou-cli</code> 安装来感受一下。</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/saikou-cli" target="_blank" rel="noopener">saikou-cli</a></li>
+<li><a href="https://www.npmjs.com/package/carbon-now-cli" target="_blank" rel="noopener">carbon-now-cli</a></li>
+</ul>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>首先进入开发目录，开始创建项目.</p>
+<h3 id="0x00-创建项目"><a href="#0x00-创建项目" class="headerlink" title="0x00 创建项目"></a>0x00 创建项目</h3><pre class=" language-shell"><code class="language-shell"># 创建目录
+mkdir baka-cli
+
+cd baka-cli
+
+# 初始化项目
+npm init -y
+</code></pre>
+<p>完成后会多一个 <code>package.json</code> 文件。</p>
+<h3 id="0x01-配置命令名称"><a href="#0x01-配置命令名称" class="headerlink" title="0x01 配置命令名称"></a>0x01 配置命令名称</h3><p>修改 <code>package.json</code> 文件，添加 <code>bin</code> 属性，属性值为执行的 js 入口文件。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 如果和包名相同且只有一个命令可以直接写字符串</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"bin"</span><span class="token punctuation">:</span> <span class="token string">"./index.js"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 对象形式可以自定义名称，也可以一次定义多个命令</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"bin"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"baka"</span><span class="token punctuation">:</span> <span class="token string">"./baka.js"</span><span class="token punctuation">,</span>
+    <span class="token string">"senkun"</span><span class="token punctuation">:</span> <span class="token string">"./senkun.js"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="0x02-其他配置"><a href="#0x02-其他配置" class="headerlink" title="0x02 其他配置"></a>0x02 其他配置</h3><p><code>package.json</code> 文件里的 <code>description</code> 和 <code>version</code> 属性也是程序需要使用的。</p>
+<h3 id="0x03-开始编写脚本"><a href="#0x03-开始编写脚本" class="headerlink" title="0x03 开始编写脚本"></a>0x03 开始编写脚本</h3><p>创建 <code>index.js</code> 文件。<br>在文件的第一行添加以下代码，告诉命令行，找到本命令后用 <code>node</code> 来执行本文件。</p>
+<pre class=" language-shell"><code class="language-shell">#!/usr/bin/env node
+
+</code></pre>
+<p>然后再加入一些简单的代码。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 第一个命令</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello world!'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h3 id="0x04-本地测试"><a href="#0x04-本地测试" class="headerlink" title="0x04 本地测试"></a>0x04 本地测试</h3><p>之后就可以开始本地测试啦。</p>
+<pre class=" language-shell"><code class="language-shell"># 使用如下命令让系统识别我们的程序
+npm link
+
+# 测试
+baka
+
+# --> hello world!
+</code></pre>
+<p>看到输出 <code>hello world!</code>，最简单的命令就完成了。</p>
+<p><img src="https://user-images.githubusercontent.com/4973519/62866286-02dce400-bd43-11e9-92d8-8423aa3e0a7e.png" alt="image"></p>
+<h3 id="0x05-完善程序"><a href="#0x05-完善程序" class="headerlink" title="0x05 完善程序"></a>0x05 完善程序</h3><p>正常使用的命令都有一些支持的参数如 <code>-h</code>, <code>-v</code> 等，简单来实现一下。</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 获取信息</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> version<span class="token punctuation">,</span> description <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./package.json'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> appName <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'-cli'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// app 支持的参数列表</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">'h'</span><span class="token punctuation">:</span> showHelp<span class="token punctuation">,</span>
+  <span class="token string">'v'</span><span class="token punctuation">:</span> showVersion<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 修改 main 方法</span>
+<span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 获取参数</span>
+  <span class="token comment" spellcheck="true">// 有效参数从第三个开始，前两个是 node 和 index.js</span>
+  <span class="token keyword">const</span> args <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true">// 获取操作符,去掉 '-'</span>
+  <span class="token keyword">const</span> operation <span class="token operator">=</span> args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true">// 执行程序</span>
+  app<span class="token punctuation">[</span>operation<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">showHelp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> help <span class="token operator">=</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>description<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+
+usage: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> [options] [arguments]
+
+options:
+  -h:     show help
+  -v:     show version
+`</span></span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>help<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">showVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>version<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>保存代码后可以测试一下。</p>
+<p><img src="https://user-images.githubusercontent.com/4973519/62866128-ab3e7880-bd42-11e9-8317-31e4376cff2d.png" alt="image"></p>
+<h3 id="0x06-添加功能"><a href="#0x06-添加功能" class="headerlink" title="0x06 添加功能"></a>0x06 添加功能</h3><p>简单完成一个 todoList 功能。</p>
+<p>创建 <code>todo.json</code> 文件来保存数据。</p>
+<p>再次修改代码。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> version<span class="token punctuation">,</span> description <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./package.json'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> todoList <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./todo.json'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> appName <span class="token operator">=</span> name<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'-cli'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token string">'c'</span><span class="token punctuation">:</span> create<span class="token punctuation">,</span>
+  <span class="token string">'d'</span><span class="token punctuation">:</span> done<span class="token punctuation">,</span>
+  <span class="token string">'r'</span><span class="token punctuation">:</span> remove<span class="token punctuation">,</span>
+  <span class="token string">'s'</span><span class="token punctuation">:</span> reset<span class="token punctuation">,</span>
+  <span class="token string">'l'</span><span class="token punctuation">:</span> listAll<span class="token punctuation">,</span>
+  <span class="token string">'h'</span><span class="token punctuation">:</span> showHelp<span class="token punctuation">,</span>
+  <span class="token string">'v'</span><span class="token punctuation">:</span> showVersion<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 有效参数从第三个开始</span>
+  <span class="token keyword">const</span> args <span class="token operator">=</span> process<span class="token punctuation">.</span>argv<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true">// 默认输出列表</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>args<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">listAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment" spellcheck="true">// 获取操作符，支持简写和单词</span>
+  <span class="token keyword">const</span> operation <span class="token operator">=</span> args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length <span class="token operator">===</span> <span class="token number">2</span> <span class="token operator">?</span> args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true">// 参数错误则展示帮助</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">'-'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span>operation <span class="token operator">||</span> <span class="token operator">!</span>Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>operation<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">showHelp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span>
+  <span class="token punctuation">}</span>
+
+  app<span class="token punctuation">[</span>operation<span class="token punctuation">]</span><span class="token punctuation">(</span>args<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">create</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> index <span class="token operator">=</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> doneIndex <span class="token operator">=</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">&amp;&amp;</span> doneIndex <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+
+  <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">done</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+  index <span class="token operator">=</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+
+  <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">remove</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> index <span class="token operator">=</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+  index <span class="token operator">=</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>job<span class="token punctuation">)</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+  <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  todoList<span class="token punctuation">.</span>todo <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  todoList<span class="token punctuation">.</span>done <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+  <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">listAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> todo <span class="token operator">=</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span>length <span class="token operator">?</span> <span class="token string">'☐ '</span> <span class="token operator">+</span> todoList<span class="token punctuation">.</span>todo<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n  ☐ '</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">''</span>
+  <span class="token keyword">const</span> done <span class="token operator">=</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span>length <span class="token operator">?</span> <span class="token string">'✔ '</span> <span class="token operator">+</span> todoList<span class="token punctuation">.</span>done<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n  ✔ '</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token string">''</span>
+  <span class="token keyword">const</span> info <span class="token operator">=</span> <span class="token template-string"><span class="token string">`Todo:
+----------
+  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>todo<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+
+Done:
+----------
+  </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>done<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+  `</span></span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">showHelp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> help <span class="token operator">=</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>description<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">
+
+usage: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>appName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> [options] [arguments]
+
+options:
+  -c, --create:   create job
+  -d, --done:     mark that the job is done
+  -r, --remove:   remove job
+  -s, --reset:    reset the list
+  -l, --list:     list all job
+  -h, --help:     show help
+  -v, --version:  show version
+`</span></span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>help<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">showVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>version<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> file <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'./todo.json'</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>todoList<span class="token punctuation">)</span>
+  fs<span class="token punctuation">.</span><span class="token function">writeFile</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> data<span class="token punctuation">,</span> <span class="token string">'utf8'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">listAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>看一下效果。</p>
+<p><img src="https://user-images.githubusercontent.com/4973519/62866428-4f282400-bd43-11e9-8c05-5047d788d058.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/4973519/62867548-18074200-bd46-11e9-905c-311c920f69f5.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/4973519/62866470-66671180-bd43-11e9-88e0-bb5fe15830a4.png" alt="image"></p>
+<h3 id="0x07-补全其他内容"><a href="#0x07-补全其他内容" class="headerlink" title="0x07 补全其他内容"></a>0x07 补全其他内容</h3><p>建议添加一个 <code>README.md</code> 文件，来简单说明一下本程序。</p>
+<pre class=" language-shell"><code class="language-shell">touch README.md
+
+echo '# baka-cli' > README.md
+</code></pre>
+<h3 id="ox08-其他"><a href="#ox08-其他" class="headerlink" title="ox08 其他"></a>ox08 其他</h3><p>可以通过 npm 包来轻松的开发程序。</p>
+<ul>
+<li>命令配置：<a href="https://www.npmjs.com/package/commander" target="_blank" rel="noopener">commander</a></li>
+<li>交互功能：<a href="https://www.npmjs.com/package/inquirer" target="_blank" rel="noopener">inquirer</a></li>
+<li>显示加载状态：<a href="https://www.npmjs.com/package/ora" target="_blank" rel="noopener">ora</a> / <a href="https://www.npmjs.com/package/node-progress" target="_blank" rel="noopener">node-progress</a></li>
+<li>…</li>
+</ul>
+<p>完。</p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2019/08/13/开发-node-命令行程序/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2019/08/13/开发-node-命令行程序/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2019/08/24/grpc的Any类型在node中应用/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/08/07/分分钟搞定node爬虫/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>

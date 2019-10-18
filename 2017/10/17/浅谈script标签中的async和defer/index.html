@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head><meta name="generator" content="Hexo 3.9.0">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.3 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            浅谈script标签中的async和defer | 
+        
+        BluedWeb
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+    
+    
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="Blued">
+    <meta name="description" content>
+    <meta name="keywords" content=",html,chrome">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.ico">
+    <link rel="icon" sizes="192x192" href="/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/img/favicon.ico">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BluedWeb">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://web.blued.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="浅谈script标签中的async和defer | BluedWeb">
+    <meta property="og:description" content>
+    <meta property="og:article:tag" content="html"> <meta property="og:article:tag" content="chrome"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+  #post-content pre {
+    background: #272822;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+<link rel="stylesheet" href="/css/prism-okaidia.css" type="text/css"></head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#defer"><span class="post-toc-number">1.</span> <span class="post-toc-text">defer</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#async"><span class="post-toc-number">2.</span> <span class="post-toc-text">async</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#画几张图简要说明"><span class="post-toc-number">3.</span> <span class="post-toc-text">画几张图简要说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#普通script"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">普通script</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#defer-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">defer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#async-1"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">async</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#推荐的应用场景"><span class="post-toc-number">4.</span> <span class="post-toc-text">推荐的应用场景</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#defer-2"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">defer</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#async-2"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">async</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考资料"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考资料</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+  <!-- Paradox Post Header -->
+  
+    
+      <!-- Random Thumbnail -->
+      <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50" data-original="">
+        <script>
+  var randomNum = Math.floor(Math.random() * 19 + 1);
+
+  if (!$('.post_thumbnail-random').attr('data-original')) {
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+  }
+  $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+      
+      
+        <p class="article-headline-p">
+          浅谈script标签中的async和defer
+        </p>
+      </div>
+    
+
+    
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+  <!-- Author Avatar -->
+  <div id="author-avatar">
+    <img src="https://avatars1.githubusercontent.com/u/9568094?v=4" width="44px" height="44px" alt="Author Avatar"/>
+  </div>
+  <!-- Author Name & Date -->
+  <div>
+    <strong>
+      <a href="https://github.com/Jiasm">jiasm</a>
+    </strong>
+    <span>10月 17, 2017</span>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Favorite -->
+  <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+  <!-- Qrcode -->
+  
+    <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">devices other</i>
+      <span class="visuallyhidden">devices other</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+      <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACyklEQVR42u3aUXIjIQwFQN//0rsH2Ap5T4xrbWi+UmMHaKYqiiRef64cL2xsbGxsbGxsbOyPZL/i8dP3/51t/WS9+npXsz1jY2Nj38D+5U9/+Z3kaHaOb7ZnbGxs7BvY64CR/NZPT2bzrOev94yNjY2NXSYJ68Qjh60DGDY2Njb2DnuGeeo5NjY2NvZTBaOdAlCy+kfU0rCxsbE/nt02ej/h5//Q38bGxsb+SHY78uDRtntnl36KnWNjY2Mfyl6X8meMWUE/2U8RrmYZGDY2NvbXsvPp2iDUzpbMn78wbGxs7BvY7QJtqpBf4pkdVrIKNjY29g3sPOXYWfgtYSkoS2FjY2OfzU4SgLaIv1P62Tmy9QvAxsbGPpXdhq72Qk/e6J2Vt4rAiY2NjX0ou71k2ZaTZoEnCZYP3znFxsbG/lp28q//fsm+TW/yYyrKVdjY2NiHsvOF18u06UoermYNY2xsbOx72DPkzuZ2Ggz5C3usloaNjY39Jex3JCRtWNopb0UKbGxs7AvYT5WK8hbsLGlpi03Y2NjY2GvMOknI52mDaN14xsbGxj6anRRu8lbrTmHoqXCFjY2NfSf7HWX6duQNibZhjI2NjX0qe1aOn12jXGPyJsQw1GFjY2NfwJ5N17YWkkNvk5D68iU2Njb2cez2sk5+fWeWxuTBsjh0bGxs7EPZeYBpU4K28ZAHpOSwsLGxsbHbQs+zScisGfzLitjY2NiHsvfbtzshbZYItcESGxsb+2x2O5LLMU81a/NVsLGxsW9mP7X8TlDc+TRPjbCxsbHPZrclobZUtN+43WkDY2NjY9/DnjVW80/zJm5+KbPYJzY2NjZ2TG0D4azNvE5IsLGxsbHzdGLnOGbhKk+NsLGxsW9j7wSefOvrkNPii5YwNjY29tHsdtK8lJO0afcTnqjlgI2NjX0o+56BjY2NjY2NjY2N/THjL8dYC23AJfhhAAAAAElFTkSuQmCC">
+    </ul>
+  
+
+  <!-- Tags (bookmark) -->
+  
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+      <i class="material-icons" role="presentation">bookmark</i>
+      <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+      <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/chrome/">chrome</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/html/">html</a>
+    </ul>
+  
+
+  <!-- Share -->
+  <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <blockquote>
+<p><code>script</code>标签用于加载脚本与执行脚本，在前端开发中可以说是非常重要的标签了。<br>直接使用<code>script</code>脚本的话，<code>html</code>会按照顺序来加载并执行脚本，在脚本加载&amp;执行的过程中，会阻塞后续的<code>DOM</code>渲染。  </p>
+</blockquote>
+<a id="more"></a>
+<p>现在大家习惯于在页面中引用各种的第三方脚本，如果第三方服务商出现了一些小问题，比如延迟之类的，就会使得页面白屏。<br>好在<code>script</code>提供了两种方式来解决上述问题，<code>async</code>和<code>defer</code>，这两个属性使得<code>script</code>都不会阻塞<code>DOM</code>的渲染。<br>但既然会存在两个属性，那么就说明，这两个属性之间肯定是有差异的。</p>
+<h2 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h2><blockquote>
+<p>如果<code>script</code>标签设置了该属性，则浏览器会异步的下载该文件并且不会影响到后续<code>DOM</code>的渲染；<br>如果有多个设置了<code>defer</code>的<code>script</code>标签存在，则会按照顺序执行所有的<code>script</code>；<br><code>defer</code>脚本会在文档渲染完毕后，<code>DOMContentLoaded</code>事件调用前执行。</p>
+</blockquote>
+<p>我们做了一个测试页面，页面中包含了两个<code>script</code>标签的加载，给他们都加上<code>defer</code>标识。<br><em>P.S. 为了更直观，我们给<code>script1.js</code>添加了<code>1s</code>的延迟，给<code>script2.js</code>添加了<code>2s</code>的延迟。</em><br><img src="https://user-images.githubusercontent.com/9568094/31616879-896dbbe0-b253-11e7-9f72-8f259c412a44.png" alt="image"><br>下图是页面加载的过程&amp;<code>script</code>脚本的输出顺序。<br>不难看出，虽然<code>script1</code>加载用时虽然比<code>script2</code>短，但因为<code>defer</code>的限制，所以Ta只能等前边的脚本执行完毕后才能执行。<br><img src="https://user-images.githubusercontent.com/9568094/31616627-d051b918-b252-11e7-848e-0aa60c24ea61.png" alt="image"><br><img src="https://user-images.githubusercontent.com/9568094/31617239-558931f0-b254-11e7-844e-309936c48ffa.png" alt="image"></p>
+<h2 id="async"><a href="#async" class="headerlink" title="async"></a>async</h2><blockquote>
+<p><code>async</code>的设置，会使得<code>script</code>脚本异步的加载并在允许的情况下执行<br><code>async</code>的执行，并不会按着<code>script</code>在页面中的顺序来执行，而是谁先加载完谁执行。</p>
+</blockquote>
+<p>我们修改测试页面如下：<br><img src="https://user-images.githubusercontent.com/9568094/31617555-1feaed6c-b255-11e7-8cea-447e99d4e1b3.png" alt="image"><br>遂得到了如下的结果，页面加载时长上，并没有什么变化，毕竟都是异步加载的脚本。<br>但是我们可以看到一个小细节，<strong><code>DOMContentLoaded</code>事件的触发并不受<code>async</code>脚本加载的影响</strong>，在脚本加载完之前，就已经触发了<code>DOMContentLoaded</code>。<br><img src="https://user-images.githubusercontent.com/9568094/31617632-4f5b4b78-b255-11e7-8641-7d03a5e027b2.png" alt="image"><br><img src="https://user-images.githubusercontent.com/9568094/31617946-3e7b7a16-b256-11e7-9ca4-f66c1f709ba3.png" alt="image"><br><img src="https://user-images.githubusercontent.com/9568094/31617686-833da8fa-b255-11e7-8080-d7a2e85b53a2.png" alt="image"><br><img src="https://user-images.githubusercontent.com/9568094/31617731-a3864a18-b255-11e7-8283-d48e4f5e30cb.png" alt="image"></p>
+<p>我们接着修改测试页面。加载一个没有延迟的<code>script</code>脚本，使得脚本可以即时的加载完毕。<br>我们要测试一下，如果<code>async</code>脚本加载的足够快，是否会在<code>DOMContentLoaded</code>之前就执行（<strong>这个实验是基于对<code>async</code>的描述“在允许的情况下执行”的论证</strong>）。<br>同时为了保证测试的稳定性，我们在<code>script</code>脚本引入的后边添加了数千个空的<code>div</code>节点，用来延长文档的渲染时间。<br><img src="https://user-images.githubusercontent.com/9568094/31618663-29873404-b258-11e7-8333-b113aa95c0ae.png" alt="image"><br>执行结果不出所料，如果给<code>async</code>一定的时间，是有可能在<code>DOMContentLoaded</code>事件之前就执行的。<br><img src="https://user-images.githubusercontent.com/9568094/31619033-314a03dc-b259-11e7-862f-17a0317920bb.png" alt="image"><br>P.S. 从上图中左上角的火焰图中，我们也能看到，出现了多段的<del>蓝色</del>（更新：晚上写的时候懵了，紫色的才是渲染，蓝色的是解析）文档渲染。以及下边<code>Console</code>的顺序。</p>
+<h2 id="画几张图简要说明"><a href="#画几张图简要说明" class="headerlink" title="画几张图简要说明"></a>画几张图简要说明</h2><blockquote>
+<p>网上有了不少这种类似的图，但是基本都是拿一个script就举例的<br>未免太过寒酸，so咱们来一个豪华版，来画一下多个脚本加载时的甘特图<br>就像近年来各大手机厂商，出新机都喜欢来一个X+X plus</p>
+</blockquote>
+<p>拿四个不同的颜色来标明各自代表的含义<br><img src="https://user-images.githubusercontent.com/9568094/31619989-a874ae42-b25b-11e7-9a80-e0f644f27849.png" alt="image"></p>
+<h3 id="普通script"><a href="#普通script" class="headerlink" title="普通script"></a>普通script</h3><p>文档解析的过程中，如果遇到<code>script</code>脚本，就会停止页面的渲染进行下载（但是并不会影响后续的解析，解析和渲染是两码事儿）。<br>资源的下载是在解析过程中进行的，虽说<code>script1</code>脚本会很快的加载完毕，但是他前边的<code>script2</code>并没有加载&amp;执行，所以他只能处于一个挂起的状态，等待<code>script2</code>执行完毕后再执行。<br>当这两个脚本都执行完毕后，才会继续渲染页面。<br><img src="https://user-images.githubusercontent.com/9568094/31621391-39849b1a-b25f-11e7-9301-641b1bc07155.png" alt="image"></p>
+<h3 id="defer-1"><a href="#defer-1" class="headerlink" title="defer"></a>defer</h3><p>文档解析时，遇到设置了<code>defer</code>的脚本，就会在后台进行下载，但是并不会阻止文档的渲染，当页面解析&amp;渲染完毕后。<br>会等到所有的<code>defer</code>脚本加载完毕并按照顺序执行，执行完毕后会触发<code>DOMContentLoaded</code>事件。<br><img src="https://user-images.githubusercontent.com/9568094/31621324-046d4a44-b25f-11e7-9d15-fe4d6a5726ae.png" alt="image"></p>
+<h3 id="async-1"><a href="#async-1" class="headerlink" title="async"></a>async</h3><p><code>async</code>脚本会在加载完毕后执行。<br><code>async</code>脚本的加载不计入<code>DOMContentLoaded</code>事件统计，也就是说下图两种情况都是有可能发生的</p>
+<p><img src="https://user-images.githubusercontent.com/9568094/31621170-b4cc0ef8-b25e-11e7-9980-99feeb9f5042.png" alt="image"><br><img src="https://user-images.githubusercontent.com/9568094/31622216-6c37db9c-b261-11e7-8bd3-79e5d4ddd4d0.png" alt="image"></p>
+<h2 id="推荐的应用场景"><a href="#推荐的应用场景" class="headerlink" title="推荐的应用场景"></a>推荐的应用场景</h2><h3 id="defer-2"><a href="#defer-2" class="headerlink" title="defer"></a>defer</h3><p>如果你的脚本代码依赖于页面中的<code>DOM</code>元素（文档是否渲染完毕），或者被其他脚本文件依赖。<br><strong>例：</strong></p>
+<ol>
+<li>评论框</li>
+<li>代码语法高亮</li>
+<li><code>polyfill.js</code></li>
+</ol>
+<h3 id="async-2"><a href="#async-2" class="headerlink" title="async"></a>async</h3><p>如果你的脚本并不关心页面中的<code>DOM</code>元素（文档是否渲染完毕），并且也不会产生其他脚本需要的数据。<br><strong>例：</strong></p>
+<ol>
+<li>百度统计</li>
+</ol>
+<p>如果不太能确定的话，用<code>defer</code>总是会比<code>async</code>稳定。。。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script</a></li>
+</ol>
+<p>测试代码存放处：<a href="https://github.com/Jiasm/research-script-tag" target="_blank" rel="noopener">https://github.com/Jiasm/research-script-tag</a><br><code>clone</code>后执行<code>npm start</code>即可运行。<br>调试推荐使用<code>chrome</code>无痕模式（这样才不会在<code>Performance</code>页签上看到不相关的插件数据）。</p>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://web.blued.cn/2017/10/17/浅谈script标签中的async和defer/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://web.blued.cn/2017/10/17/浅谈script标签中的async和defer/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//bluedweb.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/10/30/video与audio在移动端的表现/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/10/11/fix-hammerjs-conflict/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+  <!-- Top bar -->
+  <div class="top-bar"></div>
+
+  <!-- Sidebar toggle button -->
+  <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container">
+      <span class="mdl-ripple"></span>
+    </span>
+  </button>
+
+  <!-- Sidebar Avatar -->
+  <div class="sidebar-image">
+    <img src="/img/avatar.png" alt="Blued's avatar">
+  </div>
+
+  <!-- Sidebar Email -->
+  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+    web@blued.com
+    <b class="caret"></b>
+  </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="mailto:web@blued.com" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://github.com/bluedapp" target="_blank" title="GitHub">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">home</i>
+                        
+                        GitHub
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2019/10/">十月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/08/">八月 2019<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/05/">五月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/04/">四月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/03/">三月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/12/">十二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/10/">十月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/09/">九月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/07/">七月 2017<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/06/">六月 2017<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/blued" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+
+    <!-- Weibo -->
+    
+        <a href="http://weibo.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-weibo.svg);">
+                <span class="visuallyhidden">Weibo</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Instagram -->
+    
+        <a href="https://instagram.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-instagram.svg);">
+                <span class="visuallyhidden">Instagram</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+        <a href="https://github.com/bluedapp" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.svg);">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;BluedWeb
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+    <script id="dsq-count-scr" src="//bluedweb.disqus.com/count.js" async></script>
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setTimeout(function(){
+            setInterval(function(){
+                queue.execNext();
+            },200);
+        },3000);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
